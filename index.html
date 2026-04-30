@@ -36,7 +36,7 @@
 <section class="grid md:grid-cols-2 gap-10 px-10 py-20 items-center max-w-6xl mx-auto">
   <div>
     <h1 class="heading text-5xl leading-tight mb-6">
-      Sicher Deutsch sprechen.<br>Neue Chancen ergreifen.
+      Deutsch lernen.<br>Zukunft gestalten.
     </h1>
 
     <p class="text-lg mb-6">
@@ -54,7 +54,7 @@
   </div>
 
   <div class="bg-white p-10 rounded-3xl shadow">
-    <img src="logo.jpg" class="w-40 mx-auto">
+    <img src="logo_full.jpg" class="mx-auto">
   </div>
 </section>
 
@@ -72,18 +72,22 @@
 
   <div class="grid md:grid-cols-3 gap-6">
 
-    <a href="integrationskurse.html" class="bg-white p-8 rounded-2xl hover:shadow-lg transition">
+
+    <div id="card-integrationskurse" class="bg-white p-8 rounded-2xl hover:shadow-lg transition cursor-pointer">
       <h3 class="heading mb-2">Integrationskurse</h3>
       <p class="text-gray-600">Strukturierte Kurse nach BAMF-Richtlinien.</p>
       <p class="mt-4 text-sm">Mehr erfahren →</p>
-    </a>
-
-    <div class="bg-white p-8 rounded-2xl">
-      <h3 class="heading">Konversation</h3>
+      <div id="integrationskurse-content" class="hidden mt-6"></div>
     </div>
 
-    <div class="bg-white p-8 rounded-2xl">
-      <h3 class="heading">Berufssprachkurse</h3>
+    <div id="card-konversation" class="bg-white p-8 rounded-2xl transition cursor-pointer">
+      <h3 class="heading mb-2">Konversation</h3>
+      <div id="konversation-content" class="hidden mt-6"></div>
+    </div>
+
+    <div id="card-berufssprachkurse" class="bg-white p-8 rounded-2xl transition cursor-pointer">
+      <h3 class="heading mb-2">Berufssprachkurse</h3>
+      <div id="berufssprachkurse-content" class="hidden mt-6"></div>
     </div>
 
   </div>
@@ -126,6 +130,65 @@
 
 <footer class="text-center py-10 text-sm text-gray-500">
   © 2026 Eleonora Rachor
+
+<script>
+// Helper to shrink all cards and reset content
+
+function resetCards() {
+  document.getElementById('card-integrationskurse').className = 'bg-white p-8 rounded-2xl hover:shadow-lg transition cursor-pointer';
+  document.getElementById('card-konversation').className = 'bg-white p-8 rounded-2xl transition cursor-pointer';
+  document.getElementById('card-berufssprachkurse').className = 'bg-white p-8 rounded-2xl transition cursor-pointer';
+  document.getElementById('integrationskurse-content').classList.add('hidden');
+  document.getElementById('integrationskurse-content').innerHTML = '';
+  document.getElementById('konversation-content').classList.add('hidden');
+  document.getElementById('konversation-content').innerHTML = '';
+  document.getElementById('berufssprachkurse-content').classList.add('hidden');
+  document.getElementById('berufssprachkurse-content').innerHTML = '';
+}
+
+function moveCardToLeft(cardId) {
+  const grid = document.querySelector('#angebote .grid');
+  const card = document.getElementById(cardId);
+  if (grid && card) {
+    grid.insertBefore(card, grid.firstChild);
+  }
+}
+
+function enlargeCard(cardId, contentId, file) {
+  resetCards();
+  moveCardToLeft(cardId);
+  document.getElementById(cardId).className = 'bg-white p-12 rounded-2xl shadow-2xl transition cursor-pointer md:col-span-2 row-span-2';
+  ['card-integrationskurse', 'card-konversation', 'card-berufssprachkurse'].forEach(id => {
+    if (id !== cardId) {
+      document.getElementById(id).className = 'bg-white p-4 rounded-2xl opacity-60 transition cursor-pointer';
+    }
+  });
+  fetch(file)
+    .then(resp => resp.text())
+    .then(html => {
+      const temp = document.createElement('div');
+      temp.innerHTML = html;
+      const mainContent = temp.querySelector('div.max-w-4xl');
+      if (mainContent) {
+        document.getElementById(contentId).innerHTML = mainContent.innerHTML;
+        document.getElementById(contentId).classList.remove('hidden');
+      }
+    });
+}
+
+document.getElementById('card-integrationskurse').addEventListener('click', function(e) {
+  e.preventDefault();
+  enlargeCard('card-integrationskurse', 'integrationskurse-content', 'Integrationskurse.html');
+});
+document.getElementById('card-konversation').addEventListener('click', function(e) {
+  e.preventDefault();
+  enlargeCard('card-konversation', 'konversation-content', 'Konversation.html');
+});
+document.getElementById('card-berufssprachkurse').addEventListener('click', function(e) {
+  e.preventDefault();
+  enlargeCard('card-berufssprachkurse', 'berufssprachkurse-content', 'Berufssprachkurse.html');
+});
+</script>
 </footer>
 
 </body>
