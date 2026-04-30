@@ -73,21 +73,21 @@
   <div class="grid md:grid-cols-3 gap-6">
 
 
-    <div id="card-integrationskurse" class="bg-white p-8 rounded-2xl hover:shadow-lg transition cursor-pointer">
-      <h3 class="heading mb-2">Integrationskurse</h3>
-      <p class="text-gray-600">Strukturierte Kurse nach BAMF-Richtlinien.</p>
-      <p class="mt-4 text-sm">Mehr erfahren →</p>
-      <div id="integrationskurse-content" class="hidden mt-6"></div>
+    <div id="card-integrationskurse" class="bg-white p-6 sm:p-8 rounded-2xl hover:shadow-lg transition cursor-pointer">
+      <h3 class="heading mb-2 text-lg sm:text-xl md:text-2xl">Integrationskurse</h3>
+      <p class="text-gray-600 text-sm sm:text-base">Strukturierte Kurse nach BAMF-Richtlinien.</p>
+      <p class="mt-4 text-xs sm:text-sm">Mehr erfahren →</p>
+      <div id="integrationskurse-content" class="hidden mt-4 sm:mt-6 text-sm sm:text-base"></div>
     </div>
 
-    <div id="card-konversation" class="bg-white p-8 rounded-2xl transition cursor-pointer">
-      <h3 class="heading mb-2">Konversation</h3>
-      <div id="konversation-content" class="hidden mt-6"></div>
+    <div id="card-konversation" class="bg-white p-6 sm:p-8 rounded-2xl transition cursor-pointer">
+      <h3 class="heading mb-2 text-lg sm:text-xl md:text-2xl">Konversation</h3>
+      <div id="konversation-content" class="hidden mt-4 sm:mt-6 text-sm sm:text-base"></div>
     </div>
 
-    <div id="card-berufssprachkurse" class="bg-white p-8 rounded-2xl transition cursor-pointer">
-      <h3 class="heading mb-2">Berufssprachkurse</h3>
-      <div id="berufssprachkurse-content" class="hidden mt-6"></div>
+    <div id="card-berufssprachkurse" class="bg-white p-6 sm:p-8 rounded-2xl transition cursor-pointer">
+      <h3 class="heading mb-2 text-lg sm:text-xl md:text-2xl">Berufssprachkurse</h3>
+      <div id="berufssprachkurse-content" class="hidden mt-4 sm:mt-6 text-sm sm:text-base"></div>
     </div>
 
   </div>
@@ -135,9 +135,9 @@
 // Helper to shrink all cards and reset content
 
 function resetCards() {
-  document.getElementById('card-integrationskurse').className = 'bg-white p-8 rounded-2xl hover:shadow-lg transition cursor-pointer';
-  document.getElementById('card-konversation').className = 'bg-white p-8 rounded-2xl transition cursor-pointer';
-  document.getElementById('card-berufssprachkurse').className = 'bg-white p-8 rounded-2xl transition cursor-pointer';
+  document.getElementById('card-integrationskurse').className = 'bg-white p-6 sm:p-8 rounded-2xl hover:shadow-lg transition cursor-pointer';
+  document.getElementById('card-konversation').className = 'bg-white p-6 sm:p-8 rounded-2xl transition cursor-pointer';
+  document.getElementById('card-berufssprachkurse').className = 'bg-white p-6 sm:p-8 rounded-2xl transition cursor-pointer';
   document.getElementById('integrationskurse-content').classList.add('hidden');
   document.getElementById('integrationskurse-content').innerHTML = '';
   document.getElementById('konversation-content').classList.add('hidden');
@@ -157,10 +157,10 @@ function moveCardToLeft(cardId) {
 function enlargeCard(cardId, contentId, file) {
   resetCards();
   moveCardToLeft(cardId);
-  document.getElementById(cardId).className = 'bg-white p-12 rounded-2xl shadow-2xl transition cursor-pointer md:col-span-2 row-span-2';
+  document.getElementById(cardId).className = 'bg-white p-6 sm:p-10 md:p-12 rounded-2xl shadow-2xl transition cursor-pointer md:col-span-2 row-span-2 scale-[1.03]';
   ['card-integrationskurse', 'card-konversation', 'card-berufssprachkurse'].forEach(id => {
     if (id !== cardId) {
-      document.getElementById(id).className = 'bg-white p-4 rounded-2xl opacity-60 transition cursor-pointer';
+      document.getElementById(id).className = 'bg-white p-4 sm:p-6 rounded-2xl opacity-60 transition cursor-pointer scale-95';
     }
   });
   fetch(file)
