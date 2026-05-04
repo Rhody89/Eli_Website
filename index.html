@@ -55,7 +55,6 @@
 
     <div class="flex gap-4">
       <a href="#kontakt" class="bg-black text-white px-6 py-3 rounded-full">Kontakt aufnehmen</a>
-      <a href="tel:+4917631377324" class="border px-6 py-3 rounded-full">Anrufen</a>
     </div>
   </div>
 </section>
@@ -64,7 +63,7 @@
 <section id="ueber_mich" class="max-w-6xl mx-auto px-10 py-20">
   <h2 class="heading text-3xl mb-10">Über mich</h2>
   <div class="flex flex-col md:grid md:grid-cols-2 gap-10 items-center">
-    <img src="images/fotos/eli_stehend_schwarz.jpg" class="mx-auto rounded-xl mb-8 md:mb-0 w-full max-w-xs md:max-w-full h-auto">
+    <img src="images/fotos/eli_sitzend.jpg" class="mx-auto rounded-xl mb-8 md:mb-0 w-full max-w-xs md:max-w-full h-auto">
     <div>
       <p class="text-lg mb-4">
         Hallo! Mein Name ist Eleonora Rachor. Als erfahrene Dozentin für Deutsch als Fremd- und Zweitsprache begleite ich seit vielen Jahren Menschen aus aller Welt auf ihrem Weg zur deutschen Sprache.
@@ -113,8 +112,9 @@
     <h2 class="heading text-3xl mb-6">Kontakt</h2>
     <p class="mb-6">Ich freue mich auf Ihre Nachricht.</p>
 
-    <p>📧 eleonora.rachor@gmail.com</p>
-    <p>📞 +49 157 38376293</p>
+    <div class="">
+      <img src="images/fotos/eli_haende.jpg" />
+    </div>
   </div>
 
   <form action="https://api.web3forms.com/submit" method="POST" class="grid gap-4">
@@ -128,6 +128,22 @@
   </form>
 </section>
 
+  <!-- PROBEUNTERRICHT BUCHEN -->
+  <section id="probeunterricht" class="max-w-6xl mx-auto px-10 py-20">
+    <h2 class="heading text-3xl mb-6">Probeunterricht buchen</h2>
+    <p class="mb-6">Buchen Sie eine unverbindliche Probestunde (60 Minuten), um mich und meinen Unterricht kennenzulernen.</p>
+    <form action="https://api.web3forms.com/submit" method="POST" class="grid gap-4 max-w-lg">
+      <input type="hidden" name="access_key" value="DEIN_API_KEY_HIER">
+      <input type="hidden" name="subject" value="Anfrage Probeunterricht">
+      <input type="text" name="name" placeholder="Ihr Name" required class="border p-3 rounded-lg">
+      <input type="email" name="email" placeholder="Ihre E-Mail" required class="border p-3 rounded-lg">
+      <input type="tel" name="phone" placeholder="Ihre Telefonnummer (optional)" class="border p-3 rounded-lg">
+      <input type="date" name="date" placeholder="Wunschdatum" required class="border p-3 rounded-lg">
+      <input type="time" name="time" placeholder="Wunschzeit" required class="border p-3 rounded-lg">
+      <textarea name="message" rows="3" placeholder="Ihre Nachricht oder Wünsche (optional)" class="border p-3 rounded-lg"></textarea>
+      <button class="bg-black text-white py-3 rounded-full">Probeunterricht anfragen</button>
+    </form>
+  </section>
 <!-- FIX: Footer korrekt geschlossen -->
 <footer class="text-center py-10 text-sm text-gray-500">
   © 2026 Eleonora Rachor
