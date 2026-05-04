@@ -170,32 +170,9 @@ fetch('./nav.html')
     document.getElementById('nav-placeholder').innerHTML = 'Navigation Fehler';
   });
 
-// LOGIN
-const loginModal = document.getElementById('loginModal');
-const closeLogin = document.getElementById('closeLogin');
-const loginForm = document.getElementById('loginForm');
-const loginMsg = document.getElementById('loginMsg');
 
-closeLogin.onclick = () => loginModal.classList.add('hidden');
-
-loginForm.onsubmit = e => {
-  e.preventDefault();
-
-  const user = document.getElementById('loginUser').value;
-  const pass = document.getElementById('loginPass').value;
-
-  if (user === 'admin' && pass === 'demo') {
-    loginMsg.textContent = 'Login erfolgreich!';
-    loginMsg.classList.remove('hidden');
-    loginMsg.classList.add('text-green-600');
-
-    setTimeout(() => loginModal.classList.add('hidden'), 1000);
-  } else {
-    loginMsg.textContent = 'Falsche Daten';
-    loginMsg.classList.remove('hidden');
-    loginMsg.classList.add('text-red-500');
-  }
-};
+</script>
+<script src="login.js"></script>
 
 // KARTEN
 function toggleCard(cardId, contentId, text) {
