@@ -31,6 +31,20 @@
   © 2026 Eleonora Rachor
 </footer>
 
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-2xl p-8 w-full max-w-xs relative">
+    <button id="closeLogin" class="absolute top-2 right-2">&times;</button>
+    <h2 class="heading text-xl mb-4">Login</h2>
+    <form id="loginForm" class="grid gap-4">
+      <input type="text" id="loginUser" placeholder="Benutzername" class="border p-2 rounded">
+      <input type="password" id="loginPass" placeholder="Passwort" class="border p-2 rounded">
+      <button class="bg-black text-white py-2 rounded">Einloggen</button>
+      <div id="loginMsg" class="text-sm hidden"></div>
+    </form>
+  </div>
+</div>
+
 <script>
 // Load nav.html into the placeholder
 fetch('nav.html')
@@ -40,6 +54,12 @@ fetch('nav.html')
     // After nav is loaded, attach nav-related JS
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
+    const loginBtn = document.getElementById('loginBtn');
+
+    if (loginBtn) {
+      loginBtn.onclick = () => loginModal.classList.remove('hidden');
+    }
+
     if (menuToggle && navMenu) {
       menuToggle.onclick = (e) => {
         e.stopPropagation();
@@ -63,6 +83,30 @@ fetch('nav.html')
       });
     }
   });
+
+// LOGIN
+const loginModal = document.getElementById('loginModal');
+const closeLogin = document.getElementById('closeLogin');
+const loginForm = document.getElementById('loginForm');
+const loginMsg = document.getElementById('loginMsg');
+
+closeLogin.onclick = () => loginModal.classList.add('hidden');
+
+loginForm.onsubmit = e => {
+  e.preventDefault();
+  const user = document.getElementById('loginUser').value;
+  const pass = document.getElementById('loginPass').value;
+  if (user === 'admin' && pass === 'demo') {
+    loginMsg.textContent = 'Login erfolgreich!';
+    loginMsg.classList.remove('hidden');
+    loginMsg.classList.add('text-green-600');
+    setTimeout(() => loginModal.classList.add('hidden'), 1000);
+  } else {
+    loginMsg.textContent = 'Falsche Daten';
+    loginMsg.classList.remove('hidden');
+    loginMsg.classList.add('text-red-500');
+  }
+};
 </script>
 
 </body>
