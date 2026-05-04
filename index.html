@@ -148,9 +148,24 @@
 </div>
 
 <script>
+
 const menuToggle = document.getElementById('menuToggle');
 const navMenu = document.getElementById('navMenu');
-menuToggle.onclick = () => navMenu.classList.toggle('hidden');
+menuToggle.onclick = (e) => {
+  e.stopPropagation();
+  navMenu.classList.toggle('hidden');
+};
+
+// Close navMenu when clicking outside
+document.addEventListener('click', function(event) {
+  if (!navMenu.classList.contains('hidden')) {
+    const isClickInsideMenu = navMenu.contains(event.target);
+    const isClickOnToggle = menuToggle.contains(event.target);
+    if (!isClickInsideMenu && !isClickOnToggle) {
+      navMenu.classList.add('hidden');
+    }
+  }
+});
 
 const loginBtn = document.getElementById('loginBtn');
 const loginModal = document.getElementById('loginModal');
