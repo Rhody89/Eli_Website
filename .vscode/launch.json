@@ -9,6 +9,12 @@
       "request": "launch",
       "name": "Open nav.html",
       "url": "file:///c%3A/Users/MEE_MRACHO/OneDrive%20-%20Magna/Docs/Private%20Docs/Eli_Website/index.html"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Open in chrome",
+      "url": "file:///c%3A/Users/MEE_MRACHO/OneDrive%20-%20Magna/Docs/Private%20Docs/Eli_Website/index.html"
     }
   ]
 }
