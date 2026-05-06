@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Über mich – Eleonora Rachor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background:#f7f5f3; }
+    .heading { font-family: 'Playfair Display', serif; }
+  </style>
+</head>
+<body class="text-gray-900">
+  <!-- NAV -->
+  <div id="nav-placeholder"></div>
+
+  <section id="ueber_mich" class="max-w-6xl mx-auto px-10 py-20">
+  <h2 class="heading text-3xl mb-10">Über mich</h2>
+  <div class="flex flex-col md:grid md:grid-cols-2 gap-10 items-center">
+    <img src="images/fotos/eli_sitzend.jpg" class="mx-auto rounded-xl mb-8 md:mb-0 w-full max-w-xs md:max-w-full h-auto">
+    <div>
+      <p class="mb-4 text-lg">Ich bin erfahrene Dozentin für Deutsch als Fremd- und Zweitsprache (DaF/DaZ) mit über zehn Jahren Unterrichtserfahrung in Deutschland und international. Mein Schwerpunkt liegt auf der praxisnahen und zielorientierten Sprachvermittlung für Alltag, Beruf und Integration.</p>
+      <p class="mb-4 text-lg">Ich arbeite mit Lernenden aus unterschiedlichen kulturellen Hintergründen und begleite sie individuell auf ihrem Weg zum erfolgreichen Spracherwerb – vom Anfänger- bis zum fortgeschrittenen Niveau (A1–C2).</p>
+    </div>
+  </div>
+</section>
+
+  <section class="max-w-6xl mx-auto px-10 py-20">
+    <h2 class="heading text-3xl mb-8 flex items-center gap-2">Berufserfahrung</h2>
+    <p class="mb-4 text-lg">Seit vielen Jahren bin ich in der Erwachsenenbildung tätig – unter anderem bei Bildungsträgern und Institutionen in Aschaffenburg, Frankfurt und Potsdam.</p>
+    <p class="mb-4 text-lg">Zu meinen Tätigkeiten gehören:</p>
+    <ul class="list-disc pl-6 mb-4 space-y-1 text-base">
+      <li>Durchführung von Integrations- und Berufssprachkursen</li>
+      <li>Vorbereitung auf telc-Prüfungen</li>
+      <li>Individueller Sprachunterricht</li>
+      <li>Prüfungstätigkeit als zertifizierte telc-Prüferin</li>
+      <li>Unterricht für spezielle Zielgruppen (z. B. Berufssprachkurse und Alphabetisierung)</li>
+      <li>Zusammenarbeit mit Ärztinnen und Ärzten, medizinischem Fachpersonal, Banken und Unternehmen im Bereich berufsbezogene Sprachförderung</li>
+    </ul>
+    <p class="mb-4 text-lg">Darüber hinaus verfüge ich über Erfahrung in:</p>
+    <ul class="list-disc pl-6 mb-4 space-y-1 text-base">
+      <li>wissenschaftlicher Projektarbeit im Bereich Demokratieförderung</li>
+      <li>pädagogischer Arbeit mit Kindern</li>
+      <li>interkultureller Bildungsarbeit und Freiwilligenprojekten</li>
+    </ul>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-10 py-20">
+    <h2 class="heading text-3xl mb-8 flex items-center gap-2">Ausbildung & Qualifikationen</h2>
+    <p class="mb-4 text-lg">Ich habe einen Masterabschluss in Deutsch als Fremdsprache und Fremdsprachenlinguistik an der Universität Potsdam erworben (Abschlussnote: 1,0).</p>
+    <p class="mb-4 text-lg">Ergänzt wird meine akademische Ausbildung durch zahlreiche Zusatzqualifikationen, darunter:</p>
+    <ul class="list-disc pl-6 mb-4 space-y-1 text-base">
+      <li>Zulassung für Berufssprachkurse bis C2</li>
+      <li>Zertifizierung als telc-Prüferin (A1–C2)</li>
+      <li>Qualifikation für Alphabetisierungskurse</li>
+      <li>Weiterbildung im Bereich Radikalisierungsprävention</li>
+    </ul>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-10 py-20">
+    <h2 class="heading text-3xl mb-8 flex items-center gap-2">Kompetenzen</h2>
+    <ul class="list-disc pl-6 mb-4 space-y-1 text-base">
+      <li>Individuelle und zielorientierte Unterrichtsgestaltung</li>
+      <li>Interkulturelle Kompetenz</li>
+      <li>Prüfungsvorbereitung (telc)</li>
+      <li>Sprachförderung für Beruf und Alltag</li>
+      <li>Erfahrung in der Zusammenarbeit mit medizinischen Einrichtungen, Banken und Unternehmen</li>
+      <li>Erfahrung mit digitalen und wissenschaftlichen Tools (u. a. SPSS, MAXQDA)</li>
+    </ul>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-10 py-20">
+    <h2 class="heading text-3xl mb-8 flex items-center gap-2">Mein Ansatz</h2>
+    <p class="mb-4 text-lg">Mein Unterricht ist praxisorientiert, kommunikativ und auf die persönlichen Ziele meiner Teilnehmenden abgestimmt. Ich lege großen Wert auf eine motivierende Lernatmosphäre, nachhaltige Lernerfolge und eine wertschätzende Zusammenarbeit.</p>
+    <p class="mb-4 text-lg">Durch meine internationale Erfahrung und interkulturelle Kompetenz gelingt es mir, Lernende individuell zu fördern und sie sicher auf ihrem sprachlichen und beruflichen Weg zu begleiten.</p>
+  </section>
+
+  <script>
+    // Dynamisch nav.html laden
+    fetch('nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+        // Mobile nav toggle logic
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        if(menuToggle && navMenu) {
+          menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('hidden');
+          });
+        }
+      });
+  </script>
+</body>
+</html>
