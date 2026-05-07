@@ -1,18 +1,51 @@
 <nav class="flex justify-between items-center max-w-6xl mx-auto px-10 py-6 bg-white/70 backdrop-blur relative">
-  <button id="menuToggle" class="flex flex-col justify-center items-center w-10 h-10 p-2 rounded hover:bg-gray-200 md:hidden">
-    <span class="block w-6 h-0.5 bg-black mb-1"></span>
-    <span class="block w-6 h-0.5 bg-black mb-1"></span>
-    <span class="block w-6 h-0.5 bg-black"></span>
-  </button>
   <a href="index.html" class="bg-white">
     <img src="images/logos/logo_modern.jpeg" height="120" width="120">
   </a>
-  <div id="navMenu" class="hidden absolute right-0 top-16 bg-white shadow-lg rounded-lg flex flex-col gap-4 p-6 z-50 min-w-[180px] md:flex md:static md:shadow-none md:bg-transparent md:p-0 md:flex-row md:items-center md:gap-8 md:min-w-0 md:ml-auto">
+  <div id="navMenu" class="hidden absolute bg-white shadow-lg rounded-lg flex flex-col gap-4 p-6 z-50 min-w-[180px] md:flex md:static md:shadow-none md:bg-transparent md:p-0 md:flex-row md:items-center md:gap-8 md:min-w-0 md:ml-auto" style="top:0;right:0;">
     <a href="index.html" class="block text-xl">Startseite</a>
     <a href="ueber_mich.html" class="block text-xl">Über mich</a>
     <a href="index.html#angebote" class="block text-xl">Angebote</a>
     <a href="index.html#kontakt" class="block text-xl">Kontakt</a>
     <a href="event.html" class="block text-xl">Events</a>
   </div>
+  <button id="menuToggle" class="flex flex-col w-10 h-10 p-2 rounded hover:bg-gray-200 md:hidden" type="button">
+    <span class="block w-6 h-0.5 bg-black mb-1"></span>
+    <span class="block w-6 h-0.5 bg-black mb-1"></span>
+    <span class="block w-6 h-0.5 bg-black"></span>
+  </button>
   <button id="loginBtn" class="text-sm px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition ml-4">Login</button>
+
+  <script>
+  // Mobile nav toggle logic: always open navMenu above menuToggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    if (menuToggle && navMenu) {
+      menuToggle.addEventListener('click', function() {
+        if (navMenu.classList.contains('hidden')) {
+          // Show menu and position it above the button
+          navMenu.classList.remove('hidden');
+          // Get button position
+          const btnRect = menuToggle.getBoundingClientRect();
+          const scrollY = window.scrollY || window.pageYOffset;
+          navMenu.style.top = (btnRect.top + scrollY - navMenu.offsetHeight) + 'px';
+          navMenu.style.right = (window.innerWidth - btnRect.right) + 'px';
+        } else {
+          navMenu.classList.add('hidden');
+        }
+      });
+      // Hide menu on click outside
+      document.addEventListener('click', function(e) {
+        if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+          navMenu.classList.add('hidden');
+        }
+      });
+      // On resize, hide menu
+      window.addEventListener('resize', function() {
+        navMenu.classList.add('hidden');
+      });
+    }
+  });
+  </script>
 </nav>
