@@ -1,11 +1,24 @@
 <nav class="flex justify-between items-center max-w-6xl mx-auto px-10 py-6 bg-white/70 backdrop-blur relative">
   <a href="index.html" class="bg-white">
-    <img src="images/logos/logo_modern.jpeg" height="120" width="120">
+    <img src="images/logos/logo_ohne_text_weiss_geschnitten.png" height="120" width="120">
   </a>
   <div id="navMenu" class="hidden absolute bg-white shadow-lg rounded-lg flex flex-col gap-4 p-6 z-50 min-w-[180px] md:flex md:static md:shadow-none md:bg-transparent md:p-0 md:flex-row md:items-center md:gap-8 md:min-w-0 md:ml-auto" style="top:0;right:0;">
     <a href="index.html" class="block text-xl">Startseite</a>
     <a href="ueber_mich.html" class="block text-xl">Über mich</a>
-    <a href="index.html#angebote" class="block text-xl">Angebote</a>
+    <div class="relative group block">
+      <button class="block text-xl focus:outline-none" id="angeboteDropdownBtn" type="button">
+        Angebote
+        <svg class="inline w-4 h-4 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div id="angeboteDropdown" class="hidden group-hover:block absolute left-0 mt-2 w-72 bg-white shadow-lg rounded-lg z-50 py-2 border border-gray-200 md:min-w-[260px]">
+        <a href="angebote.html#daf" class="block px-6 py-2 hover:bg-gray-100 text-base">Deutsch als Fremd- und Zweitsprache (DaF/DaZ)</a>
+        <a href="angebote.html#medizin" class="block px-6 py-2 hover:bg-gray-100 text-base">Medizinisches Deutsch & Fachsprachprüfung (FSP)</a>
+        <a href="angebote.html#unternehmen" class="block px-6 py-2 hover:bg-gray-100 text-base">Berufssprachkurse für Unternehmen</a>
+        <a href="angebote.html#kommunikation" class="block px-6 py-2 hover:bg-gray-100 text-base">Kommunikationstraining</a>
+        <a href="angebote.html#interkultur" class="block px-6 py-2 hover:bg-gray-100 text-base">Interkulturelle Bildung, Resilienz & Prävention</a>
+        <a href="angebote.html#individuell" class="block px-6 py-2 hover:bg-gray-100 text-base">Individuelle Konzepte</a>
+      </div>
+    </div>
     <a href="index.html#kontakt" class="block text-xl">Kontakt</a>
     <a href="event.html" class="block text-xl">Events</a>
   </div>
@@ -21,12 +34,13 @@
   document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
+    const angeboteDropdownBtn = document.getElementById('angeboteDropdownBtn');
+    const angeboteDropdown = document.getElementById('angeboteDropdown');
+    let dropdownOpen = false;
     if (menuToggle && navMenu) {
       menuToggle.addEventListener('click', function() {
         if (navMenu.classList.contains('hidden')) {
-          // Show menu and position it above the button
           navMenu.classList.remove('hidden');
-          // Get button position
           const btnRect = menuToggle.getBoundingClientRect();
           const scrollY = window.scrollY || window.pageYOffset;
           navMenu.style.top = (btnRect.top + scrollY - navMenu.offsetHeight) + 'px';
@@ -35,15 +49,37 @@
           navMenu.classList.add('hidden');
         }
       });
-      // Hide menu on click outside
       document.addEventListener('click', function(e) {
         if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
           navMenu.classList.add('hidden');
+          if (angeboteDropdown) angeboteDropdown.classList.add('hidden');
         }
       });
-      // On resize, hide menu
       window.addEventListener('resize', function() {
         navMenu.classList.add('hidden');
+        if (angeboteDropdown) angeboteDropdown.classList.add('hidden');
+      });
+    }
+    // Dropdown logic for Angebote
+    if (angeboteDropdownBtn && angeboteDropdown) {
+      // Desktop: show on hover (handled by group-hover), Mobile: show on click
+      angeboteDropdownBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        angeboteDropdown.classList.toggle('hidden');
+        dropdownOpen = !dropdownOpen;
+      });
+      // Hide dropdown on click outside
+      document.addEventListener('click', function(e) {
+        if (dropdownOpen && !angeboteDropdownBtn.contains(e.target) && !angeboteDropdown.contains(e.target)) {
+          angeboteDropdown.classList.add('hidden');
+          dropdownOpen = false;
+        }
+      });
+      // Hide dropdown on resize
+      window.addEventListener('resize', function() {
+        angeboteDropdown.classList.add('hidden');
+        dropdownOpen = false;
       });
     }
   });
