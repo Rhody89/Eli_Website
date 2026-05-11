@@ -1,0 +1,62 @@
+<nav class="flex justify-between items-center max-w-6xl mx-auto px-10 py-6 bg-white/70 backdrop-blur relative">
+  <a href="index_en.html" class="bg-white">
+    <img src="images/logos/logo_ohne_text_weiss_geschnitten.png" height="120" width="120">
+  </a>
+  <div id="navMenu" class="hidden absolute bg-white shadow-lg rounded-lg flex flex-col gap-4 p-6 z-50 min-w-[180px] md:flex md:static md:shadow-none md:bg-transparent md:p-0 md:flex-row md:items-center md:gap-8 md:min-w-0 md:ml-auto" style="top:0;right:0;">
+    <a href="index_en.html" class="block text-xl">Home</a>
+    <a href="ueber_mich_en.html" class="block text-xl">About Me</a>
+    <div class="relative group block">
+      <button class="block text-xl focus:outline-none" id="angeboteDropdownBtn" type="button">
+        Offers
+        <svg class="inline w-4 h-4 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div id="angeboteDropdown" class="hidden group-hover:block absolute left-0 mt-2 w-72 bg-white shadow-lg rounded-lg z-50 py-2 border border-gray-200 md:min-w-[260px]">
+        <a href="angebote_en.html#daf" class="block px-6 py-2 hover:bg-gray-100 text-base">German as a Foreign and Second Language (DaF/DaZ)</a>
+        <a href="angebote_en.html#medizin" class="block px-6 py-2 hover:bg-gray-100 text-base">Medical German & Specialist Language Exam (FSP)</a>
+        <a href="angebote_en.html#unternehmen" class="block px-6 py-2 hover:bg-gray-100 text-base">Business Language Courses for Companies</a>
+        <a href="angebote_en.html#kommunikation" class="block px-6 py-2 hover:bg-gray-100 text-base">Communication Training</a>
+        <a href="angebote_en.html#interkultur" class="block px-6 py-2 hover:bg-gray-100 text-base">Intercultural Education, Resilience & Prevention</a>
+        <a href="angebote_en.html#individuell" class="block px-6 py-2 hover:bg-gray-100 text-base">Individual Concepts</a>
+      </div>
+    </div>
+    <a href="index_en.html#kontakt" class="block text-xl">Contact</a>
+    <a href="event_en.html" class="block text-xl">Events</a>
+  </div>
+  <button id="menuToggle" class="flex flex-col w-10 h-10 p-2 rounded hover:bg-gray-200 md:hidden" type="button">
+    <span class="block w-6 h-0.5 bg-black mb-1"></span>
+    <span class="block w-6 h-0.5 bg-black mb-1"></span>
+    <span class="block w-6 h-0.5 bg-black"></span>
+  </button>
+  <button id="loginBtn" class="text-sm px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition ml-4">Login</button>
+  <div class="ml-4">
+    <select id="langSwitcher" class="border rounded px-2 py-1">
+      <option value="de">DE</option>
+      <option value="en" selected>EN</option>
+    </select>
+  </div>
+  <script>
+  // Language switcher logic
+  document.addEventListener('DOMContentLoaded', function() {
+    const langSwitcher = document.getElementById('langSwitcher');
+    langSwitcher.addEventListener('change', function() {
+      const lang = langSwitcher.value;
+      const pageMap = {
+        'index_en.html': 'index.html',
+        'ueber_mich_en.html': 'ueber_mich.html',
+        'angebote_en.html': 'angebote.html',
+        'event_en.html': 'event.html',
+        // Add more mappings as needed
+      };
+      let current = window.location.pathname.split('/').pop();
+      if (lang === 'de' && current.endsWith('_en.html')) {
+        let dePage = pageMap[current] || 'index.html';
+        window.location.href = dePage;
+      } else if (lang === 'en' && !current.endsWith('_en.html')) {
+        let enPage = Object.keys(pageMap).find(key => pageMap[key] === current) || 'index_en.html';
+        window.location.href = enPage;
+      }
+    });
+  });
+  // ...existing nav JS (mobile menu, dropdowns)...
+  </script>
+</nav>

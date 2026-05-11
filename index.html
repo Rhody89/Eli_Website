@@ -16,8 +16,22 @@
 
 <body class="text-gray-900">
 
+
 <!-- NAV -->
 <div id="nav-placeholder"></div>
+<script>
+  fetch('nav.html')
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById('nav-placeholder').innerHTML = html;
+      var s = document.createElement('script');
+      s.src = 'nav-lang.js';
+      s.onload = function() {
+        if (window.setupNavLang) window.setupNavLang();
+      };
+      document.body.appendChild(s);
+    });
+</script>
 
 <!-- HERO -->
 <section class="grid md:grid-cols-2 gap-10 px-4 md:px-10 py-20 items-center max-w-6xl mx-auto">

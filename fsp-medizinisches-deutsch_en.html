@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSP & Medical German – Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+      body { font-family: 'Inter', sans-serif; background:#f7f5f3; }
+      .heading { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="text-gray-900">
+    <!-- NAV -->
+    <div id="nav-placeholder"></div>
+    <script>
+      fetch('nav.html')
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById('nav-placeholder').innerHTML = html;
+          var s = document.createElement('script');
+          s.src = 'nav-lang.js';
+          s.onload = function() { if (window.setupNavLang) window.setupNavLang(); };
+          document.body.appendChild(s);
+        });
+    </script>
+    <section class="max-w-6xl mx-auto px-10 py-20">
+        <h1 class="heading text-3xl md:text-4xl mb-2">FSP & Medical German</h1>
+        <div class="text-lg mb-6">Pass the Specialist Language Exam (FSP) – with targeted preparation</div>
+        <p class="font-semibold mb-2">Online German course for doctors and medical staff</p>
+        <p class="mb-6">Do you want to work as a doctor in Germany and need to pass the Specialist Language Exam (FSP)?<br>
+        I will prepare you specifically and practically for the exam – with realistic simulations, medical vocabulary, and individual support.</p>
+        <ul class="list-disc pl-6 mb-8 space-y-2 text-base">
+            <li>Specialized FSP instruction</li>
+            <li>Individual training (1:1)</li>
+            <li>Realistic exam simulations</li>
+            <li>Rapid progress</li>
+        </ul>
+    </section>
+    <section class="max-w-6xl mx-auto px-10 py-20">
+        <h2 class="heading text-2xl mb-3 mt-2">Who is the course for?</h2>
+        <ul class="list-disc pl-6 mb-0 space-y-2 text-base">
+            <li>Doctors from abroad</li>
+            <li>Medical professionals in recognition procedures</li>
+            <li>Candidates shortly before the FSP</li>
+            <li>Medical staff focusing on communication</li>
+        </ul>
+    </section>
+    <section class="max-w-6xl mx-auto px-10 py-20">
+        <h2 class="heading text-2xl mb-3 mt-2">What to expect</h2>
+        <ul class="mb-0 space-y-4">
+            <li><span class="font-semibold">1. Doctor-patient conversation:</span> <br>
+                <span class="ml-2">Conducting anamnesis in a structured way, speaking clearly and confidently, avoiding typical mistakes</span>
+            </li>
+            <li><span class="font-semibold">2. Documentation & terminology:</span> <br>
+                <span class="ml-2">Understanding and writing medical reports, using medical terms correctly, clear and precise expression</span>
+            </li>
+            <li><span class="font-semibold">3. Doctor-doctor conversation:</span> <br>
+                <span class="ml-2">Presenting cases, conducting professional discussions confidently, training for typical exam situations</span>
+            </li>
+            <li><span class="font-semibold">4. Exam simulation:</span> <br>
+                <span class="ml-2">realistic FSP exam, individual feedback, targeted improvement of your weaknesses</span>
+            </li>
+        </ul>
+    </section>
+</body>
+</html>

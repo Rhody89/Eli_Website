@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offers – Eleonora Rachor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background:#f7f5f3; }
+    .heading { font-family: 'Playfair Display', serif; }
+  </style>
+</head>
+<body class="text-gray-900">
+  <!-- NAV -->
+  <div id="nav-placeholder"></div>
+  <script>
+    fetch('nav.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('nav-placeholder').innerHTML = html;
+        var s = document.createElement('script');
+        s.src = 'nav-lang.js';
+        s.onload = function() { if (window.setupNavLang) window.setupNavLang(); };
+        document.body.appendChild(s);
+      });
+  </script>
+  <section class="max-w-6xl mx-auto px-4 md:px-10 py-10">
+    <h1 class="heading text-4xl md:text-5xl leading-tight mb-8">Offers</h1>
+    <div class="grid gap-6">
+      <section class="bg-white rounded-2xl shadow p-6" id="daf">
+        <h2 class="heading text-xl mb-2 flex items-center gap-2">German as a Foreign and Second Language (DaF/DaZ)</h2>
+        <p class="mb-1 text-gray-700">Courses for:</p>
+        <ul class="list-disc pl-6 mb-2 space-y-1 text-sm">
+          <li>Everyday life and integration</li>
+          <li>Work and studies</li>
+          <li>Exam preparation</li>
+          <li>Conversation and grammar</li>
+          <li>All levels (A1–C2)</li>
+        </ul>
+      </section>
+      <section class="bg-white rounded-2xl shadow p-6" id="medizin">
+        <h2 class="heading text-xl mb-2 flex items-center gap-2">Medical German & Specialist Language Exam (FSP)</h2>
+        <p class="mb-1 text-gray-700">Professional preparation for:</p>
+        <ul class="list-disc pl-6 mb-1 space-y-1 text-sm">
+          <li>Doctors</li>
+          <li>Nurses</li>
+          <li>Medical professionals</li>
+        </ul>
+        <p class="mb-1 text-gray-700">Focus areas:</p>
+        <ul class="list-disc pl-6 mb-2 space-y-1 text-sm">
+          <li>Doctor-patient communication</li>
+          <li>Medical terminology</li>
+          <li>Documentation and case presentations</li>
+          <li>Exam simulations</li>
+        </ul>
+      </section>
+      <div class="flex flex-col md:flex-row items-stretch gap-6">
+        <section class="bg-white rounded-2xl shadow p-6 flex-1 h-full flex flex-col" id="unternehmen">
+          <h2 class="heading text-xl mb-2 flex items-center gap-2">Business Language Courses for Companies</h2>
+          <p class="mb-1 text-gray-700">Practical language and communication training for international employees.</p>
+          <p class="mb-1 text-gray-700">Possible topics:</p>
+          <ul class="list-disc pl-6 mb-2 space-y-1 text-sm">
+            <li>Communication in everyday work</li>
+            <li>Meetings and presentations</li>
+            <li>Emails and phone calls</li>
+            <li>Industry-specific terminology</li>
+            <li>Intercultural collaboration</li>
+          </ul>
+        </section>

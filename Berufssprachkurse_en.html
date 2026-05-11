@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Language Courses – Eleonora Rachor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-black font-sans">
+<div id="nav-placeholder"></div>
+<script>
+  fetch('nav.html')
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById('nav-placeholder').innerHTML = html;
+      var s = document.createElement('script');
+      s.src = 'nav-lang.js';
+      s.onload = function() { if (window.setupNavLang) window.setupNavLang(); };
+      document.body.appendChild(s);
+    });
+</script>
+<div class="max-w-4xl mx-auto px-6 py-20">
+  <h1 class="text-4xl font-bold mt-6 mb-6">Business Language Courses</h1>
+  <p class="mb-6">
+    The business language courses specifically prepare you for the linguistic requirements of working life.
+  </p>
+  <ul class="list-disc pl-6 mb-6">
+    <li>Technical language for various industries</li>
+    <li>Application training</li>
+    <li>Communication in the workplace</li>
+  </ul>
+  <p>
+    The goal is to improve your chances on the job market and to be successful in your career.
+  </p>
+</div>
+</body>
+</html>

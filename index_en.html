@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eleonora Rachor – Learn German</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background:#f7f5f3; }
+    .heading { font-family: 'Playfair Display', serif; }
+  </style>
+</head>
+<body class="text-gray-900">
+<!-- NAV -->
+<div id="nav-placeholder"></div>
+<script>
+  fetch('nav.html')
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById('nav-placeholder').innerHTML = html;
+      var s = document.createElement('script');
+      s.src = 'nav-lang.js';
+      s.onload = function() {
+        if (window.setupNavLang) window.setupNavLang();
+      };
+      document.body.appendChild(s);
+    });
+</script>
+<!-- HERO -->
+<section class="grid md:grid-cols-2 gap-10 px-4 md:px-10 py-20 items-center max-w-6xl mx-auto">
+  <div>
+    <h1 class="heading text-4xl md:text-5xl leading-tight mb-4">Eleonora Rachor Academy</h1>
+    <p class="mb-6 text-2xl">Language. Communication. Education.</p>
+    <p class="mb-6 text-xl">German. Medicine. Communication. Intercultural. Prevention. Resilience.</p>
+    <p class="mb-6 text-gray-700">Professional courses and training for international professionals, companies, and individuals.</p>
+    <p class="mb-6 text-gray-700">Eleonora Rachor Academy combines language education, intercultural communication, and social education with a modern, practice-oriented approach.</p>
+    <p class="mb-6 text-gray-700">Whether German as a foreign and second language, medical German, communication training, or prevention work – the focus is on individual support, sustainable development, and professional communication in an international context.</p>
+  </div>
+  <div>
+    <img src="images/fotos/eli_sitzend_schwarz.JPG" class="mx-auto rounded-xl mb-8 md:mb-0 w-full max-w-xs md:max-w-full h-auto">
+  </div>
+</section>
+<section class="max-w-6xl mx-auto px-10 py-20">
+  <div>
+    <h1 class="heading text-4xl md:text-5xl leading-tight mb-8">My Focus Areas</h1>
+    <ul class="mb-8 space-y-6">
+      <li>
+        <span class="font-semibold text-xl">German as a Foreign and Second Language (DaF/DaZ)</span><br>
+        <span class="text-gray-700">Courses for everyday life, work, studies, and integration – from A1 to C2.</span>
+      </li>
+      <li>
+        <span class="font-semibold text-xl">Medical German & FSP</span><br>
+        <span class="text-gray-700">Specialized preparation for doctors and medical professionals for the Specialist Language Exam (FSP) and everyday work in healthcare.</span>
+      </li>
+      <li>
+        <span class="font-semibold text-xl">Business Language Courses for Companies</span><br>
+        <span class="text-gray-700">Practical language and communication training for international employees and teams.</span>
+      </li>
+      <li>
+        <span class="font-semibold text-xl">Intercultural Communication</span><br>
+        <span class="text-gray-700">Training and support for successful communication in international and diverse work and educational environments.</span>
+      </li>
+      <li>
+        <span class="font-semibold text-xl">Communication, Resilience & Prevention</span><br>
+        <span class="text-gray-700">Workshops and educational offers on social participation, democracy promotion, radicalization and extremism prevention, and communicative resilience.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+</body>
+</html>

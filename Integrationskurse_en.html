@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integration Courses – Eleonora Rachor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-black font-sans">
+<div id="nav-placeholder"></div>
+<script>
+  fetch('nav.html')
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById('nav-placeholder').innerHTML = html;
+      var s = document.createElement('script');
+      s.src = 'nav-lang.js';
+      s.onload = function() { if (window.setupNavLang) window.setupNavLang(); };
+      document.body.appendChild(s);
+    });
+</script>
+<div class="max-w-4xl mx-auto px-6 py-20">
+  <h1 class="text-4xl font-bold mt-6 mb-6">Integration Courses</h1>
+  <p class="mb-6">
+    My integration courses are aimed at people who are new to Germany and want to learn the language from scratch.
+  </p>
+  <p class="mb-6">
+    You will learn:
+  </p>
+  <ul class="list-disc pl-6 mb-6">
+    <li>German for everyday life (shopping, doctor, authorities)</li>
+    <li>Basic grammar and vocabulary</li>
+    <li>Communication in real situations</li>
+  </ul>
+  <p>
+    The goal is to move confidently in everyday life and actively participate in social life.
+  </p>
+</div>
+</body>
+</html>
