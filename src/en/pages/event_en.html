@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Events – Eleonora Rachor</title>
+  <title>Events - Eleonora Rachor</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
@@ -13,47 +13,42 @@
 </head>
 <body class="text-gray-900">
 
-<!-- NAV (loaded via JS include) -->
 <div id="nav-placeholder"></div>
 
-<!-- EVENTS SECTION -->
 <section class="max-w-6xl mx-auto px-10 py-20">
   <h1 class="heading text-4xl mb-8">Events & Workshops</h1>
   <div class="grid md:grid-cols-2 gap-8">
     <div class="bg-white rounded-2xl p-8 shadow">
-      <img src="images/flyer/Sprachcafé_v2.png" />
+      <img src="../images/flyer/Sprachcafé_v2.png" />
     </div>
   </div>
 </section>
 
 <footer class="text-center py-10 text-sm text-gray-500">
-  <a href="impressum_datenschutz.html#Impressum">Impressum | </a>
-  <a href="impressum_datenschutz.html#Datenschutz">Datenschutz</a>
+  <a href="impressum_datenschutz_en.html#Impressum">Legal Notice | </a>
+  <a href="impressum_datenschutz_en.html#Datenschutz">Privacy Policy</a>
   <br/>
   <p>© 2026 Eleonora Rachor</p>
 </footer>
 
-<!-- LOGIN MODAL -->
 <div id="loginModal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 hidden">
   <div class="bg-white rounded-2xl p-8 w-full max-w-xs relative">
     <button id="closeLogin" class="absolute top-2 right-2">&times;</button>
     <h2 class="heading text-xl mb-4">Login</h2>
     <form id="loginForm" class="grid gap-4">
-      <input type="text" id="loginUser" placeholder="Benutzername" class="border p-2 rounded">
-      <input type="password" id="loginPass" placeholder="Passwort" class="border p-2 rounded">
-      <button class="bg-black text-white py-2 rounded">Einloggen</button>
+      <input type="text" id="loginUser" placeholder="Username" class="border p-2 rounded">
+      <input type="password" id="loginPass" placeholder="Password" class="border p-2 rounded">
+      <button class="bg-black text-white py-2 rounded">Log in</button>
       <div id="loginMsg" class="text-sm hidden"></div>
     </form>
   </div>
 </div>
 
 <script>
-// Load nav.html into the placeholder
-fetch('nav.html')
+fetch('../nav.html')
   .then(response => response.text())
   .then(html => {
     document.getElementById('nav-placeholder').innerHTML = html;
-    // After nav is loaded, attach nav-related JS
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
     const loginBtn = document.getElementById('loginBtn');
@@ -86,7 +81,6 @@ fetch('nav.html')
     }
   });
 
-// LOGIN
 const loginModal = document.getElementById('loginModal');
 const closeLogin = document.getElementById('closeLogin');
 const loginForm = document.getElementById('loginForm');
@@ -99,12 +93,12 @@ loginForm.onsubmit = e => {
   const user = document.getElementById('loginUser').value;
   const pass = document.getElementById('loginPass').value;
   if (user === 'admin' && pass === 'demo') {
-    loginMsg.textContent = 'Login erfolgreich!';
+    loginMsg.textContent = 'Login successful!';
     loginMsg.classList.remove('hidden');
     loginMsg.classList.add('text-green-600');
     setTimeout(() => loginModal.classList.add('hidden'), 1000);
   } else {
-    loginMsg.textContent = 'Falsche Daten';
+    loginMsg.textContent = 'Incorrect credentials';
     loginMsg.classList.remove('hidden');
     loginMsg.classList.add('text-red-500');
   }

@@ -1,0 +1,116 @@
+﻿<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events – Eleonora Rachor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background:#f7f5f3; }
+    .heading { font-family: 'Playfair Display', serif; }
+  </style>
+</head>
+<body class="text-gray-900">
+
+<!-- NAV (loaded via JS include) -->
+<div id="nav-placeholder"></div>
+
+<!-- EVENTS SECTION -->
+<section class="max-w-6xl mx-auto px-10 py-20">
+  <h1 class="heading text-4xl mb-8">Events & Workshops</h1>
+  <div class="grid md:grid-cols-2 gap-8">
+    <div class="bg-white rounded-2xl p-8 shadow">
+      <img src="../images/flyer/Sprachcafé_v2.png" />
+    </div>
+  </div>
+</section>
+
+<footer class="text-center py-10 text-sm text-gray-500">
+  <a href="impressum_datenschutz.html#Impressum">Impressum | </a>
+  <a href="impressum_datenschutz.html#Datenschutz">Datenschutz</a>
+  <br/>
+  <p>© 2026 Eleonora Rachor</p>
+</footer>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-2xl p-8 w-full max-w-xs relative">
+    <button id="closeLogin" class="absolute top-2 right-2">&times;</button>
+    <h2 class="heading text-xl mb-4">Login</h2>
+    <form id="loginForm" class="grid gap-4">
+      <input type="text" id="loginUser" placeholder="Benutzername" class="border p-2 rounded">
+      <input type="password" id="loginPass" placeholder="Passwort" class="border p-2 rounded">
+      <button class="bg-black text-white py-2 rounded">Einloggen</button>
+      <div id="loginMsg" class="text-sm hidden"></div>
+    </form>
+  </div>
+</div>
+
+<script>
+// Load nav.html into the placeholder
+fetch('../nav.html')
+  .then(response => response.text())
+  .then(html => {
+    document.getElementById('nav-placeholder').innerHTML = html;
+    // After nav is loaded, attach nav-related JS
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    const loginBtn = document.getElementById('loginBtn');
+
+    if (loginBtn) {
+      loginBtn.onclick = () => loginModal.classList.remove('hidden');
+    }
+
+    if (menuToggle && navMenu) {
+      menuToggle.onclick = (e) => {
+        e.stopPropagation();
+        navMenu.classList.toggle('hidden');
+      };
+      document.addEventListener('click', function(event) {
+        if (!navMenu.classList.contains('hidden')) {
+          const isClickInsideMenu = navMenu.contains(event.target);
+          const isClickOnToggle = menuToggle.contains(event.target);
+          if (!isClickInsideMenu && !isClickOnToggle) {
+            navMenu.classList.add('hidden');
+          }
+        }
+      });
+      document.querySelectorAll('#navMenu a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.getComputedStyle(menuToggle).display !== 'none') {
+            navMenu.classList.add('hidden');
+          }
+        });
+      });
+    }
+  });
+
+// LOGIN
+const loginModal = document.getElementById('loginModal');
+const closeLogin = document.getElementById('closeLogin');
+const loginForm = document.getElementById('loginForm');
+const loginMsg = document.getElementById('loginMsg');
+
+closeLogin.onclick = () => loginModal.classList.add('hidden');
+
+loginForm.onsubmit = e => {
+  e.preventDefault();
+  const user = document.getElementById('loginUser').value;
+  const pass = document.getElementById('loginPass').value;
+  if (user === 'admin' && pass === 'demo') {
+    loginMsg.textContent = 'Login erfolgreich!';
+    loginMsg.classList.remove('hidden');
+    loginMsg.classList.add('text-green-600');
+    setTimeout(() => loginModal.classList.add('hidden'), 1000);
+  } else {
+    loginMsg.textContent = 'Falsche Daten';
+    loginMsg.classList.remove('hidden');
+    loginMsg.classList.add('text-red-500');
+  }
+};
+</script>
+
+</body>
+</html>
+

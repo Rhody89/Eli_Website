@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -12,10 +12,10 @@
   </style>
 </head>
 <body class="text-gray-900">
-  <!-- NAV -->
-  <div id="nav-placeholder"></div>
 
-  <section class="max-w-6xl mx-auto px-4 md:px-10 py-10">
+<div id="nav-placeholder"></div>
+
+<section class="max-w-6xl mx-auto px-4 md:px-10 py-10">
     <h1 class="heading text-4xl md:text-5xl leading-tight mb-8">Angebote</h1>
     <div class="grid gap-6">
       <section class="bg-white rounded-2xl shadow p-6" id="daf">
@@ -58,7 +58,7 @@
             <li>interkulturelle Zusammenarbeit</li>
           </ul>
         </section>
-        <img src="images/fotos/eli_stehend_schwarz.jpg" class="rounded-xl shadow max-w-xs md:max-w-sm w-full h-full object-cover md:mt-0 mt-4" alt="Dozentin Eleonora Rachor">
+        <img src="../images/fotos/eli_stehend_schwarz.jpg" class="rounded-xl shadow max-w-xs md:max-w-sm w-full h-full object-cover md:mt-0 mt-4" alt="Dozentin Eleonora Rachor">
       </div>
       <section class="bg-white rounded-2xl shadow p-6" id="kommunikation">
         <h2 class="heading text-xl mb-2 flex items-center gap-2">Kommunikationstraining</h2>
@@ -91,28 +91,106 @@
   </section>
   </section>
 
-  <footer class="text-center py-10 text-sm text-gray-500">
-    <a href="impressum_datenschutz.html#Impressum">Impressum | </a>
-    <a href="impressum_datenschutz.html#Datenschutz">Datenschutz</a>
-    <br/>
-    <p>© 2026 Eleonora Rachor</p>
+
+<footer class="text-center py-10 text-sm text-gray-500">
+  <a href="impressum_datenschutz.html#Impressum">Impressum | </a>
+  <a href="impressum_datenschutz.html#Datenschutz">Datenschutz</a>
+  <br/>
+  <p>© 2026 Eleonora Rachor</p>
 </footer>
 
-  <script>
-    // Dynamisch nav.html laden
-    fetch('nav.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('nav-placeholder').innerHTML = data;
-        // Mobile nav toggle logic
-        const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.getElementById('navMenu');
-        if(menuToggle && navMenu) {
-          menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('hidden');
-          });
+<div id="loginModal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-2xl p-8 w-full max-w-xs relative">
+    <button id="closeLogin" class="absolute top-2 right-2">&times;</button>
+    <h2 class="heading text-xl mb-4">Login</h2>
+    <form id="loginForm" class="grid gap-4">
+      <input type="text" id="loginUser" placeholder="Benutzername" class="border p-2 rounded">
+      <input type="password" id="loginPass" placeholder="Passwort" class="border p-2 rounded">
+      <button class="bg-black text-white py-2 rounded">Einloggen</button>
+      <div id="loginMsg" class="text-sm hidden"></div>
+    </form>
+  </div>
+</div>
+
+<script>
+fetch('../nav.de.html')
+  .then(response => response.text())
+  .then(html => {
+    const navPlaceholder = document.getElementById('nav-placeholder');
+    navPlaceholder.innerHTML = html;
+
+    // Run scripts embedded in fetched nav markup so dynamic link rewriting is applied.
+    navPlaceholder.querySelectorAll('script').forEach(oldScript => {
+      const script = document.createElement('script');
+      if (oldScript.src) {
+        script.src = oldScript.src;
+      } else {
+        script.textContent = oldScript.textContent;
+      }
+      document.body.appendChild(script);
+      oldScript.remove();
+    });
+
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    const loginBtn = document.getElementById('loginBtn');
+
+    if (loginBtn) {
+      loginBtn.onclick = () => loginModal.classList.remove('hidden');
+    }
+
+    if (menuToggle && navMenu) {
+      menuToggle.onclick = (e) => {
+        e.stopPropagation();
+        navMenu.classList.toggle('hidden');
+      };
+      document.addEventListener('click', function(event) {
+        if (!navMenu.classList.contains('hidden')) {
+          const isClickInsideMenu = navMenu.contains(event.target);
+          const isClickOnToggle = menuToggle.contains(event.target);
+          if (!isClickInsideMenu && !isClickOnToggle) {
+            navMenu.classList.add('hidden');
+          }
         }
       });
-  </script>
+      document.querySelectorAll('#navMenu a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.getComputedStyle(menuToggle).display !== 'none') {
+            navMenu.classList.add('hidden');
+          }
+        });
+      });
+    }
+  })
+  .catch(() => {
+    document.getElementById('nav-placeholder').innerHTML = 'Navigation Fehler';
+  });
+
+const loginModal = document.getElementById('loginModal');
+const closeLogin = document.getElementById('closeLogin');
+const loginForm = document.getElementById('loginForm');
+const loginMsg = document.getElementById('loginMsg');
+
+closeLogin.onclick = () => loginModal.classList.add('hidden');
+
+loginForm.onsubmit = e => {
+  e.preventDefault();
+  const user = document.getElementById('loginUser').value;
+  const pass = document.getElementById('loginPass').value;
+  if (user === 'admin' && pass === 'demo') {
+    loginMsg.textContent = 'Login erfolgreich!';
+    loginMsg.classList.remove('hidden');
+    loginMsg.classList.add('text-green-600');
+    setTimeout(() => loginModal.classList.add('hidden'), 1000);
+  } else {
+    loginMsg.textContent = 'Falsche Daten';
+    loginMsg.classList.remove('hidden');
+    loginMsg.classList.add('text-red-500');
+  }
+};
+</script>
+<script src="../login.js"></script>
+
 </body>
 </html>
+

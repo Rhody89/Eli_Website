@@ -1,4 +1,4 @@
-﻿<nav class="flex justify-between items-center max-w-6xl mx-auto px-10 py-6 bg-white/70 backdrop-blur relative">
+<nav class="flex justify-between items-center max-w-6xl mx-auto px-10 py-6 bg-white/70 backdrop-blur relative">
   <a id="logoLink" href="index.html" class="bg-white">
     <img id="logoImage" src="images/logos/logo_modern_v2.png" height="120" width="120" alt="Eleonora Rachor Academy">
   </a>
@@ -38,7 +38,7 @@
   <script>
   (function () {
     const path = window.location.pathname.replace(/\\/g, '/');
-    const forcedLanguage = '';
+    const forcedLanguage = '{{forceLanguage}}';
     const isEnglish = forcedLanguage ? forcedLanguage === 'en' : path.includes('/english/');
     const isGermanSub = path.includes('/deutsch/');
     const isBkp = path.includes('/bkp/');
@@ -200,4 +200,3 @@
   })();
   </script>
 </nav>
-

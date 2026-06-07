@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -15,7 +15,6 @@
 
 <div id="nav-placeholder"></div>
 
-<!-- HERO -->
 <section class="max-w-6xl mx-auto px-6 md:px-10 py-20 flex flex-col md:flex-row items-center gap-10">
   <div class="flex-1">
     <h1 class="heading text-4xl md:text-5xl mb-6">Deutschkurse für Unternehmen</h1>
@@ -30,7 +29,7 @@
     <a href="#kontakt" class="bg-black text-white px-8 py-3 rounded-full text-lg font-semibold shadow hover:bg-gray-800 transition">Jetzt Beratung anfragen</a>
   </div>
   <div class="flex-1 flex justify-center">
-    <img src="images/fotos/eli_stehend_schwarz.jpg" class="rounded-xl shadow max-w-xs md:max-w-sm w-full" alt="Dozentin Eleonora Rachor">
+    <img src="../images/fotos/eli_stehend_schwarz.jpg" class="rounded-xl shadow max-w-xs md:max-w-sm w-full" alt="Dozentin Eleonora Rachor">
   </div>
 </section>
 
@@ -85,6 +84,7 @@
   </form>
 </section>
 
+
 <footer class="text-center py-10 text-sm text-gray-500">
   <a href="impressum_datenschutz.html#Impressum">Impressum | </a>
   <a href="impressum_datenschutz.html#Datenschutz">Datenschutz</a>
@@ -92,32 +92,98 @@
   <p>© 2026 Eleonora Rachor</p>
 </footer>
 
+<div id="loginModal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-2xl p-8 w-full max-w-xs relative">
+    <button id="closeLogin" class="absolute top-2 right-2">&times;</button>
+    <h2 class="heading text-xl mb-4">Login</h2>
+    <form id="loginForm" class="grid gap-4">
+      <input type="text" id="loginUser" placeholder="Benutzername" class="border p-2 rounded">
+      <input type="password" id="loginPass" placeholder="Passwort" class="border p-2 rounded">
+      <button class="bg-black text-white py-2 rounded">Einloggen</button>
+      <div id="loginMsg" class="text-sm hidden"></div>
+    </form>
+  </div>
+</div>
+
 <script>
-// NAV laden
-fetch('./nav.html')
-  .then(res => {
-    if (!res.ok) throw new Error();
-    return res.text();
-  })
+fetch('../nav.de.html')
+  .then(response => response.text())
   .then(html => {
-    document.getElementById('nav-placeholder').innerHTML = html;
+    const navPlaceholder = document.getElementById('nav-placeholder');
+    navPlaceholder.innerHTML = html;
+
+    // Run scripts embedded in fetched nav markup so dynamic link rewriting is applied.
+    navPlaceholder.querySelectorAll('script').forEach(oldScript => {
+      const script = document.createElement('script');
+      if (oldScript.src) {
+        script.src = oldScript.src;
+      } else {
+        script.textContent = oldScript.textContent;
+      }
+      document.body.appendChild(script);
+      oldScript.remove();
+    });
+
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
     const loginBtn = document.getElementById('loginBtn');
+
     if (loginBtn) {
       loginBtn.onclick = () => loginModal.classList.remove('hidden');
     }
+
     if (menuToggle && navMenu) {
-      menuToggle.onclick = e => {
+      menuToggle.onclick = (e) => {
         e.stopPropagation();
         navMenu.classList.toggle('hidden');
       };
+      document.addEventListener('click', function(event) {
+        if (!navMenu.classList.contains('hidden')) {
+          const isClickInsideMenu = navMenu.contains(event.target);
+          const isClickOnToggle = menuToggle.contains(event.target);
+          if (!isClickInsideMenu && !isClickOnToggle) {
+            navMenu.classList.add('hidden');
+          }
+        }
+      });
+      document.querySelectorAll('#navMenu a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.getComputedStyle(menuToggle).display !== 'none') {
+            navMenu.classList.add('hidden');
+          }
+        });
+      });
     }
   })
   .catch(() => {
     document.getElementById('nav-placeholder').innerHTML = 'Navigation Fehler';
   });
+
+const loginModal = document.getElementById('loginModal');
+const closeLogin = document.getElementById('closeLogin');
+const loginForm = document.getElementById('loginForm');
+const loginMsg = document.getElementById('loginMsg');
+
+closeLogin.onclick = () => loginModal.classList.add('hidden');
+
+loginForm.onsubmit = e => {
+  e.preventDefault();
+  const user = document.getElementById('loginUser').value;
+  const pass = document.getElementById('loginPass').value;
+  if (user === 'admin' && pass === 'demo') {
+    loginMsg.textContent = 'Login erfolgreich!';
+    loginMsg.classList.remove('hidden');
+    loginMsg.classList.add('text-green-600');
+    setTimeout(() => loginModal.classList.add('hidden'), 1000);
+  } else {
+    loginMsg.textContent = 'Falsche Daten';
+    loginMsg.classList.remove('hidden');
+    loginMsg.classList.add('text-red-500');
+  }
+};
 </script>
-<script src="login.js"></script>
+<script src="../login.js"></script>
+
 </body>
 </html>
+

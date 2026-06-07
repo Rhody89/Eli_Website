@@ -1,26 +1,8 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Über mich – Eleonora Rachor</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Inter', sans-serif; background:#f7f5f3; }
-    .heading { font-family: 'Playfair Display', serif; }
-  </style>
-</head>
-<body class="text-gray-900">
-
-  <!-- NAV -->
-  <div id="nav-placeholder"></div>
-
-  <section class="max-w-6xl mx-auto px-4 md:px-10 py-20">
+﻿<section class="max-w-6xl mx-auto px-4 md:px-10 py-20">
     <h1 class="heading text-4xl md:text-5xl leading-tight mb-8">Über mich</h1>
     <p class="mb-4 text-lg">Ich bin Diplom-Germanistin sowie M.A. Fremdsprachenlinguistin mit den Schwerpunkten Deutsch als Fremdsprache sowie Sprache in Erwerb und Kommunikation. Seit über 15 Jahren arbeite ich im Bereich Sprachbildung, Kommunikation und interkulturelle Bildung – sowohl in Deutschland als auch international.</p>
     <div class="flex flex-col md:flex-row gap-10 items-center mb-8">
-      <img src="images/fotos/eli_sitzend.jpg" class="mx-auto rounded-xl w-full max-w-xs md:max-w-sm h-auto" alt="Eleonora Rachor">
+      <img src="../images/fotos/eli_sitzend.jpg" class="mx-auto rounded-xl w-full max-w-xs md:max-w-sm h-auto" alt="Eleonora Rachor">
       <div class="flex-1">
         <p class="mb-4 text-2xl">Meine berufliche Erfahrung umfasst:</p>
         <ul class="list-disc pl-6 mb-4 space-y-1 text-base">
@@ -53,30 +35,6 @@
           <li>Weiterbildung im Bereich Demokratieförderung und Präventionsarbeit</li>
         </ul>
       </div>
-      <img src="images/fotos/eli_sitzend_laptop_schwarz.JPG" class="mx-auto rounded-xl w-full max-w-xs md:max-w-sm h-auto" alt="Eleonora Rachor">
+      <img src="../images/fotos/eli_sitzend_laptop_schwarz.JPG" class="mx-auto rounded-xl w-full max-w-xs md:max-w-sm h-auto" alt="Eleonora Rachor">
     </div>
   </section>
-
-  <footer class="text-center py-10 text-sm text-gray-500">
-    <a href="impressum_datenschutz.html#Impressum">Impressum | </a>
-    <a href="impressum_datenschutz.html#Datenschutz">Datenschutz</a>
-    <br/>
-    <p>© 2026 Eleonora Rachor</p>
-  </footer>
-
-  <script>
-    // Dynamisch nav.html laden
-    fetch('nav.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('nav-placeholder').innerHTML = data;
-        // Mobile nav toggle logic
-        const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.getElementById('navMenu');
-        if(menuToggle && navMenu) {
-          menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('hidden');
-          });
-        }
-      });
-  </script>

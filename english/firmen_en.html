@@ -1,0 +1,186 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German Courses for Companies - Eleonora Rachor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background:#f7f5f3; }
+    .heading { font-family: 'Playfair Display', serif; }
+  </style>
+</head>
+<body class="text-gray-900">
+
+<div id="nav-placeholder"></div>
+
+<section class="max-w-6xl mx-auto px-6 md:px-10 py-20 flex flex-col md:flex-row items-center gap-10">
+  <div class="flex-1">
+    <h1 class="heading text-4xl md:text-5xl mb-6">German Courses for Companies</h1>
+    <p class="text-xl mb-6">Effective language support for your international teams - flexible, practical, and tailored.</p>
+    <ul class="mb-8 space-y-2 text-base">
+      <li>✔️ Individual company courses (in-person & online)</li>
+      <li>✔️ Industry-specific content & technical language</li>
+      <li>✔️ Flexible scheduling</li>
+      <li>✔️ Experienced, certified instructor</li>
+      <li>✔️ Fast integration of new employees</li>
+    </ul>
+    <a href="#kontakt" class="bg-black text-white px-8 py-3 rounded-full text-lg font-semibold shadow hover:bg-gray-800 transition">Request consultation now</a>
+  </div>
+  <div class="flex-1 flex justify-center">
+    <img src="../images/fotos/eli_stehend_schwarz.jpg" class="rounded-xl shadow max-w-xs md:max-w-sm w-full" alt="Instructor Eleonora Rachor">
+  </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-6 md:px-10 py-10">
+  <h2 class="heading text-2xl mb-6">Your benefits at a glance</h2>
+  <div class="grid md:grid-cols-2 gap-8">
+    <ul class="list-disc pl-6 space-y-2">
+      <li>Improved team communication</li>
+      <li>Better integration of international employees</li>
+      <li>Higher motivation and retention</li>
+      <li>More efficient day-to-day workflows</li>
+      <li>Individual course concepts for your company</li>
+    </ul>
+    <ul class="list-disc pl-6 space-y-2">
+      <li>Specialized language support (e.g. engineering, nursing, administration)</li>
+      <li>telc exam preparation (A1-C2, vocational language courses)</li>
+      <li>Regular feedback & transparent progress</li>
+      <li>Training available in German, English, or multilingual formats</li>
+    </ul>
+  </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-6 md:px-10 py-10">
+  <h2 class="heading text-2xl mb-6">How it works</h2>
+  <ol class="list-decimal pl-6 space-y-2 mb-6">
+    <li>Non-binding consultation & needs analysis</li>
+    <li>Customized course concept for your company</li>
+    <li>Flexible delivery (online, on-site, or hybrid)</li>
+    <li>Regular progress monitoring & feedback</li>
+  </ol>
+  <div class="bg-gray-100 rounded-2xl p-8 mt-8 flex flex-col items-center shadow">
+    <h3 class="heading text-xl mb-2">Interested?</h3>
+    <p class="mb-4 text-center max-w-xl">Contact me for a personal consultation and a tailor-made offer for your company.</p>
+    <a href="#kontakt" class="bg-black text-white px-8 py-3 rounded-full text-lg font-semibold shadow hover:bg-gray-800 transition">Request consultation</a>
+  </div>
+</section>
+
+<section id="kontakt" class="max-w-6xl mx-auto px-6 md:px-10 py-20">
+  <h2 class="heading text-2xl mb-6">Contact for Companies</h2>
+  <form action="https://api.web3forms.com/submit" method="POST" class="grid gap-4 max-w-lg">
+    <input type="hidden" name="access_key" value="DEIN_API_KEY_HIER">
+    <input type="hidden" name="subject" value="Company inquiry">
+    <input type="text" name="firma" placeholder="Your company" required class="border p-3 rounded-lg">
+    <input type="text" name="name" placeholder="Your name" required class="border p-3 rounded-lg">
+    <input type="email" name="email" placeholder="Your email" required class="border p-3 rounded-lg">
+    <input type="tel" name="telefon" placeholder="Phone (optional)" class="border p-3 rounded-lg">
+    <textarea name="anliegen" rows="4" placeholder="Your request / desired course content" required class="border p-3 rounded-lg"></textarea>
+    <button class="bg-black text-white py-3 rounded-full">Request consultation</button>
+  </form>
+</section>
+
+
+<footer class="text-center py-10 text-sm text-gray-500">
+  <a href="impressum_datenschutz_en.html#Impressum">Legal Notice | </a>
+  <a href="impressum_datenschutz_en.html#Datenschutz">Privacy Policy</a>
+  <br/>
+  <p>© 2026 Eleonora Rachor</p>
+</footer>
+
+<div id="loginModal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-2xl p-8 w-full max-w-xs relative">
+    <button id="closeLogin" class="absolute top-2 right-2">&times;</button>
+    <h2 class="heading text-xl mb-4">Login</h2>
+    <form id="loginForm" class="grid gap-4">
+      <input type="text" id="loginUser" placeholder="Username" class="border p-2 rounded">
+      <input type="password" id="loginPass" placeholder="Password" class="border p-2 rounded">
+      <button class="bg-black text-white py-2 rounded">Log in</button>
+      <div id="loginMsg" class="text-sm hidden"></div>
+    </form>
+  </div>
+</div>
+
+<script>
+fetch('../nav.en.html')
+  .then(response => response.text())
+  .then(html => {
+    const navPlaceholder = document.getElementById('nav-placeholder');
+    navPlaceholder.innerHTML = html;
+
+    // Run scripts embedded in fetched nav markup so dynamic link rewriting is applied.
+    navPlaceholder.querySelectorAll('script').forEach(oldScript => {
+      const script = document.createElement('script');
+      if (oldScript.src) {
+        script.src = oldScript.src;
+      } else {
+        script.textContent = oldScript.textContent;
+      }
+      document.body.appendChild(script);
+      oldScript.remove();
+    });
+
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    const loginBtn = document.getElementById('loginBtn');
+
+    if (loginBtn) {
+      loginBtn.onclick = () => loginModal.classList.remove('hidden');
+    }
+
+    if (menuToggle && navMenu) {
+      menuToggle.onclick = (e) => {
+        e.stopPropagation();
+        navMenu.classList.toggle('hidden');
+      };
+      document.addEventListener('click', function(event) {
+        if (!navMenu.classList.contains('hidden')) {
+          const isClickInsideMenu = navMenu.contains(event.target);
+          const isClickOnToggle = menuToggle.contains(event.target);
+          if (!isClickInsideMenu && !isClickOnToggle) {
+            navMenu.classList.add('hidden');
+          }
+        }
+      });
+      document.querySelectorAll('#navMenu a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.getComputedStyle(menuToggle).display !== 'none') {
+            navMenu.classList.add('hidden');
+          }
+        });
+      });
+    }
+  })
+  .catch(() => {
+    document.getElementById('nav-placeholder').innerHTML = 'Navigation error';
+  });
+
+const loginModal = document.getElementById('loginModal');
+const closeLogin = document.getElementById('closeLogin');
+const loginForm = document.getElementById('loginForm');
+const loginMsg = document.getElementById('loginMsg');
+
+closeLogin.onclick = () => loginModal.classList.add('hidden');
+
+loginForm.onsubmit = e => {
+  e.preventDefault();
+  const user = document.getElementById('loginUser').value;
+  const pass = document.getElementById('loginPass').value;
+  if (user === 'admin' && pass === 'demo') {
+    loginMsg.textContent = 'Login successful!';
+    loginMsg.classList.remove('hidden');
+    loginMsg.classList.add('text-green-600');
+    setTimeout(() => loginModal.classList.add('hidden'), 1000);
+  } else {
+    loginMsg.textContent = 'Incorrect credentials';
+    loginMsg.classList.remove('hidden');
+    loginMsg.classList.add('text-red-500');
+  }
+};
+</script>
+<script src="../login.js"></script>
+
+</body>
+</html>
+

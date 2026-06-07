@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -116,7 +116,7 @@
 
 <script>
 // Load nav.html into the placeholder
-fetch('nav.html')
+fetch('../nav.html')
   .then(response => response.text())
   .then(html => {
     document.getElementById('nav-placeholder').innerHTML = html;
@@ -180,3 +180,4 @@ loginForm.onsubmit = e => {
 
 </body>
 </html>
+
