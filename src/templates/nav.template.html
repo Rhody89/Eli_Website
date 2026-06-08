@@ -38,21 +38,31 @@
   <script>
   (function () {
     const path = window.location.pathname.replace(/\\/g, '/');
-    const forcedLanguage = '{{forceLanguage}}';
-    const isEnglish = forcedLanguage ? forcedLanguage === 'en' : path.includes('/english/');
+    const isEnglish = path.includes('/english/');
     const isGermanSub = path.includes('/deutsch/');
     const isBkp = path.includes('/bkp/');
     const file = path.split('/').pop() || 'index.html';
 
     const rootPrefix = isBkp ? '../../' : (isEnglish || isGermanSub ? '../' : '');
-    const toDeFile = name => name.endsWith('_en.html') ? name.replace('_en.html', '.html') : name;
-    const toEnFile = name => name.endsWith('.html') && !name.endsWith('_en.html') ? name.replace('.html', '_en.html') : name;
+
+    // Some hosts/browser routes may drop ".html"; normalize before switching language.
+    function toDeFile(name) {
+      const base = name.replace(/\.html$/i, '');
+      const deBase = base.endsWith('_en') ? base.slice(0, -3) : base;
+      return (deBase || 'index') + '.html';
+    }
+
+    function toEnFile(name) {
+      const base = name.replace(/\.html$/i, '');
+      const enBase = base.endsWith('_en') ? base : (base + '_en');
+      return (enBase || 'index_en') + '.html';
+    }
 
     const deLinks = {
-      home: 'deutsch/index.html',
+      home: 'index.html',
       about: 'deutsch/ueber_mich.html',
       services: 'deutsch/angebote.html',
-      contact: 'deutsch/index.html#kontakt',
+      contact: 'index.html#kontakt',
       events: 'deutsch/event.html',
       subDaf: 'deutsch/angebote.html#daf',
       subMed: 'deutsch/angebote.html#medizin',
@@ -131,11 +141,11 @@
     let deCounterpart = 'index.html';
     let enCounterpart = 'english/index_en.html';
     if (isEnglish) {
-      deCounterpart = (isBkp ? 'deutsch/bkp/' : 'deutsch/') + toDeFile(file);
-      enCounterpart = (isBkp ? 'english/bkp/' : 'english/') + file;
+      deCounterpart = 'deutsch/' + toDeFile(file);
+      enCounterpart = 'english/' + file;
     } else if (isGermanSub) {
-      deCounterpart = (isBkp ? 'deutsch/bkp/' : 'deutsch/') + file;
-      enCounterpart = (isBkp ? 'english/bkp/' : 'english/') + toEnFile(file);
+      deCounterpart = 'deutsch/' + file;
+      enCounterpart = 'english/' + toEnFile(file);
     }
 
     const langSwitch = document.getElementById('langSwitch');
