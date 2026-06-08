@@ -40,10 +40,9 @@
     const path = window.location.pathname.replace(/\\/g, '/');
     const isEnglish = path.includes('/english/');
     const isGermanSub = path.includes('/deutsch/');
-    const isBkp = path.includes('/bkp/');
     const file = path.split('/').pop() || 'index.html';
 
-    const rootPrefix = isBkp ? '../../' : (isEnglish || isGermanSub ? '../' : '');
+    const rootPrefix = (isEnglish || isGermanSub ? '../' : '');
 
     // Some hosts/browser routes may drop ".html"; normalize before switching language.
     function toDeFile(name) {
@@ -59,10 +58,10 @@
     }
 
     const deLinks = {
-      home: 'index.html',
+      home: 'deutsch/index.html',
       about: 'deutsch/ueber_mich.html',
       services: 'deutsch/angebote.html',
-      contact: 'index.html#kontakt',
+      contact: 'deutsch/index.html#kontakt',
       events: 'deutsch/event.html',
       subDaf: 'deutsch/angebote.html#daf',
       subMed: 'deutsch/angebote.html#medizin',

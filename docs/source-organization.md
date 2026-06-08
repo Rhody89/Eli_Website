@@ -19,9 +19,7 @@ This project now uses a **source vs output** structure and has started a **singl
 - `src/shared/nav.html`: shared bilingual navigation
 - `src/de/index.html`: German home page (root output)
 - `src/de/pages/*.html`: German secondary pages (output to `deutsch/`)
-- `src/de/bkp/*.html`: German backup pages (output to `deutsch/bkp/`)
 - `src/en/pages/*.html`: English pages (output to `english/`)
-- `src/en/bkp/*.html`: English backup pages (output to `english/bkp/`)
 
 ## Runtime output
 
@@ -39,7 +37,6 @@ At the moment:
 	- `deutsch/angebote.html`, `deutsch/event.html`, `deutsch/firmen.html`, `deutsch/ueber_mich.html`, `deutsch/impressum_datenschutz.html`
 	- `english/angebote_en.html`, `english/event_en.html`, `english/firmen_en.html`, `english/ueber_mich_en.html`, `english/impressum_datenschutz_en.html`
 - `nav.html` is published from `src/templates/nav.template.html`.
-- Backup pages are still copied from `src/de/bkp` and `src/en/bkp`.
 
 ## Commands
 
@@ -56,7 +53,7 @@ Node/npm (optional, if installed):
 ## Recommended workflow
 
 1. Edit templates/locales (`src/templates/**`, `src/i18n/**`) and content fragments (`src/content/**`) for migrated pages.
-2. Edit direct source HTML under `src/de/bkp/**` and `src/en/bkp/**` for backup pages.
+2. Edit direct source HTML under `src/de/pages/**` and `src/en/pages/**` for non-migrated pages.
 3. Run build:
 	- `powershell -ExecutionPolicy Bypass -File .\\scripts\\build-site.ps1`
 4. Test site behavior.

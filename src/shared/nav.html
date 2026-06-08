@@ -40,10 +40,9 @@
     const path = window.location.pathname.replace(/\\/g, '/');
     const isEnglish = path.includes('/english/');
     const isGermanSub = path.includes('/deutsch/');
-    const isBkp = path.includes('/bkp/');
     const file = path.split('/').pop() || 'index.html';
 
-    const rootPrefix = isBkp ? '../../' : (isEnglish || isGermanSub ? '../' : '');
+    const rootPrefix = (isEnglish || isGermanSub ? '../' : '');
     const toDeFile = name => name.endsWith('_en.html') ? name.replace('_en.html', '.html') : name;
     const toEnFile = name => name.endsWith('.html') && !name.endsWith('_en.html') ? name.replace('.html', '_en.html') : name;
 
@@ -130,11 +129,11 @@
     let deCounterpart = 'index.html';
     let enCounterpart = 'english/index_en.html';
     if (isEnglish) {
-      deCounterpart = (isBkp ? 'deutsch/bkp/' : 'deutsch/') + toDeFile(file);
-      enCounterpart = (isBkp ? 'english/bkp/' : 'english/') + file;
+      deCounterpart = 'deutsch/' + toDeFile(file);
+      enCounterpart = 'english/' + file;
     } else if (isGermanSub) {
-      deCounterpart = (isBkp ? 'deutsch/bkp/' : 'deutsch/') + file;
-      enCounterpart = (isBkp ? 'english/bkp/' : 'english/') + toEnFile(file);
+      deCounterpart = 'deutsch/' + file;
+      enCounterpart = 'english/' + toEnFile(file);
     }
 
     const langSwitch = document.getElementById('langSwitch');

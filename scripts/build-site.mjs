@@ -7,9 +7,7 @@ const mappings = [
   { src: 'src/shared/nav.html', dest: 'nav.html' },
   { src: 'src/de/index.html', dest: 'index.html' },
   { src: 'src/de/pages', dest: 'deutsch', dir: true },
-  { src: 'src/de/bkp', dest: 'deutsch/bkp', dir: true },
-  { src: 'src/en/pages', dest: 'english', dir: true },
-  { src: 'src/en/bkp', dest: 'english/bkp', dir: true }
+  { src: 'src/en/pages', dest: 'english', dir: true }
 ];
 
 async function ensureDir(dirPath) {
