@@ -53,37 +53,13 @@ fetch('../nav.html')
   .then(response => response.text())
   .then(html => {
     document.getElementById('nav-placeholder').innerHTML = html;
-    // After nav is loaded, attach nav-related JS
-    const menuToggle = document.getElementById('menuToggle');
-    const navMenu = document.getElementById('navMenu');
+    // After nav is loaded, attach page-level JS only.
     const loginBtn = document.getElementById('loginBtn');
 
     if (loginBtn) {
       loginBtn.onclick = () => loginModal.classList.remove('hidden');
     }
 
-    if (menuToggle && navMenu) {
-      menuToggle.onclick = (e) => {
-        e.stopPropagation();
-        navMenu.classList.toggle('hidden');
-      };
-      document.addEventListener('click', function(event) {
-        if (!navMenu.classList.contains('hidden')) {
-          const isClickInsideMenu = navMenu.contains(event.target);
-          const isClickOnToggle = menuToggle.contains(event.target);
-          if (!isClickInsideMenu && !isClickOnToggle) {
-            navMenu.classList.add('hidden');
-          }
-        }
-      });
-      document.querySelectorAll('#navMenu a').forEach(link => {
-        link.addEventListener('click', () => {
-          if (window.getComputedStyle(menuToggle).display !== 'none') {
-            navMenu.classList.add('hidden');
-          }
-        });
-      });
-    }
   });
 
 // LOGIN

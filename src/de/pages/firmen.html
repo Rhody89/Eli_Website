@@ -101,17 +101,9 @@ fetch('../nav.html')
   })
   .then(html => {
     document.getElementById('nav-placeholder').innerHTML = html;
-    const menuToggle = document.getElementById('menuToggle');
-    const navMenu = document.getElementById('navMenu');
     const loginBtn = document.getElementById('loginBtn');
     if (loginBtn) {
       loginBtn.onclick = () => loginModal.classList.remove('hidden');
-    }
-    if (menuToggle && navMenu) {
-      menuToggle.onclick = e => {
-        e.stopPropagation();
-        navMenu.classList.toggle('hidden');
-      };
     }
   })
   .catch(() => {

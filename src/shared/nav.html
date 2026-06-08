@@ -155,7 +155,7 @@
           navMenu.classList.remove('hidden');
           const btnRect = menuToggle.getBoundingClientRect();
           const scrollY = window.scrollY || window.pageYOffset;
-          navMenu.style.top = (btnRect.top + scrollY - navMenu.offsetHeight) + 'px';
+          navMenu.style.top = (btnRect.bottom + scrollY + 8) + 'px';
           navMenu.style.right = (window.innerWidth - btnRect.right) + 'px';
         } else {
           navMenu.classList.add('hidden');
