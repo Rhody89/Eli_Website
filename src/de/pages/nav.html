@@ -1,29 +1,29 @@
 ﻿<nav class="flex justify-between items-center max-w-6xl mx-auto px-10 py-6 bg-white/70 backdrop-blur relative">
   <a id="logoLink" href="index.html" class="bg-white">
-    <img id="logoImage" src="images/logos/logo_modern_v2.png" height="120" width="120" alt="Eleonora Rachor Academy">
+    <img id="logoImage" src="images/logos/logo_modern_v3.png" height="200" width="200" alt="Eleonora Rachor Academy">
   </a>
 
   <div id="navMenu" class="hidden absolute bg-white shadow-lg rounded-lg flex flex-col gap-4 p-6 z-50 min-w-[200px] md:flex md:static md:shadow-none md:bg-transparent md:p-0 md:flex-row md:items-center md:gap-8 md:min-w-0 md:ml-auto" style="top:0;right:0;">
     <a id="homeLink" href="index.html" class="block text-xl">Startseite</a>
-    <a id="aboutLink" href="deutsch/ueber_mich.html" class="block text-xl">Über mich</a>
+    <a id="aboutLink" href="de/ueber_mich.html" class="block text-xl">Über mich</a>
     <div class="relative group block">
       <div class="flex items-center">
-        <a id="servicesLink" href="deutsch/angebote.html" class="block text-xl focus:outline-none">Angebote</a>
+        <a id="servicesLink" href="de/angebote.html" class="block text-xl focus:outline-none">Angebote</a>
         <button id="angeboteDropdownBtn" aria-label="Dropdown öffnen" class="ml-1 focus:outline-none" style="background:transparent;border:none;padding:0;cursor:pointer;">
           <svg class="inline w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
         </button>
       </div>
       <div id="angeboteDropdown" class="hidden group-hover:block absolute left-0 -mt-1 w-72 bg-white shadow-lg rounded-lg z-60 py-2 border border-gray-200 md:min-w-[260px]" style="margin-top:-2px;">
-        <a id="subDaf" href="deutsch/angebote.html#daf" class="block px-6 py-2 hover:bg-gray-100 text-base">Deutsch als Fremd- und Zweitsprache (DaF/DaZ)</a>
-        <a id="subMed" href="deutsch/angebote.html#medizin" class="block px-6 py-2 hover:bg-gray-100 text-base">Medizinisches Deutsch & Fachsprachprüfung (FSP)</a>
-        <a id="subCompany" href="deutsch/angebote.html#unternehmen" class="block px-6 py-2 hover:bg-gray-100 text-base">Berufssprachkurse für Unternehmen</a>
-        <a id="subComms" href="deutsch/angebote.html#kommunikation" class="block px-6 py-2 hover:bg-gray-100 text-base">Kommunikationstraining</a>
-        <a id="subInter" href="deutsch/angebote.html#interkultur" class="block px-6 py-2 hover:bg-gray-100 text-base">Interkulturelle Bildung, Resilienz & Prävention</a>
-        <a id="subCustom" href="deutsch/angebote.html#individuell" class="block px-6 py-2 hover:bg-gray-100 text-base">Individuelle Konzepte</a>
+        <a id="subDaf" href="de/angebote.html#daf" class="block px-6 py-2 hover:bg-gray-100 text-base">Deutsch als Fremd- und Zweitsprache (DaF/DaZ)</a>
+        <a id="subMed" href="de/angebote.html#medizin" class="block px-6 py-2 hover:bg-gray-100 text-base">Medizinisches Deutsch & Fachsprachprüfung (FSP)</a>
+        <a id="subCompany" href="de/angebote.html#unternehmen" class="block px-6 py-2 hover:bg-gray-100 text-base">Berufssprachkurse für Unternehmen</a>
+        <a id="subComms" href="de/angebote.html#kommunikation" class="block px-6 py-2 hover:bg-gray-100 text-base">Kommunikationstraining</a>
+        <a id="subInter" href="de/angebote.html#interkultur" class="block px-6 py-2 hover:bg-gray-100 text-base">Interkulturelle Bildung, Resilienz & Prävention</a>
+        <a id="subCustom" href="de/angebote.html#individuell" class="block px-6 py-2 hover:bg-gray-100 text-base">Individuelle Konzepte</a>
       </div>
     </div>
     <a id="contactLink" href="index.html#kontakt" class="block text-xl">Kontakt</a>
-    <a id="eventsLink" href="deutsch/event.html" class="block text-xl">Events</a>
+    <a id="eventsLink" href="de/event.html" class="block text-xl">Events</a>
   </div>
 
   <button id="menuToggle" class="flex flex-col w-10 h-10 p-2 rounded hover:bg-gray-200 md:hidden" type="button">
@@ -38,8 +38,8 @@
   <script>
   (function () {
     const path = window.location.pathname.replace(/\\/g, '/');
-    const isEnglish = path.includes('/english/');
-    const isGermanSub = path.includes('/deutsch/');
+    const isEnglish = path.includes('/en/');
+    const isGermanSub = path.includes('/de/');
     const file = path.split('/').pop() || 'index.html';
 
     const rootPrefix = (isEnglish || isGermanSub ? '../' : '');
@@ -58,31 +58,31 @@
     }
 
     const deLinks = {
-      home: 'deutsch/index.html',
-      about: 'deutsch/ueber_mich.html',
-      services: 'deutsch/angebote.html',
-      contact: 'deutsch/index.html#kontakt',
-      events: 'deutsch/event.html',
-      subDaf: 'deutsch/angebote.html#daf',
-      subMed: 'deutsch/angebote.html#medizin',
-      subCompany: 'deutsch/angebote.html#unternehmen',
-      subComms: 'deutsch/angebote.html#kommunikation',
-      subInter: 'deutsch/angebote.html#interkultur',
-      subCustom: 'deutsch/angebote.html#individuell'
+      home: 'de/index.html',
+      about: 'de/ueber_mich.html',
+      services: 'de/angebote.html',
+      contact: 'de/index.html#kontakt',
+      events: 'de/event.html',
+      subDaf: 'de/angebote.html#daf',
+      subMed: 'de/angebote.html#medizin',
+      subCompany: 'de/angebote.html#unternehmen',
+      subComms: 'de/angebote.html#kommunikation',
+      subInter: 'de/angebote.html#interkultur',
+      subCustom: 'de/angebote.html#individuell'
     };
 
     const enLinks = {
-      home: 'english/index_en.html',
-      about: 'english/ueber_mich_en.html',
-      services: 'english/angebote_en.html',
-      contact: 'english/index_en.html#kontakt',
-      events: 'english/event_en.html',
-      subDaf: 'english/angebote_en.html#daf',
-      subMed: 'english/angebote_en.html#medizin',
-      subCompany: 'english/angebote_en.html#unternehmen',
-      subComms: 'english/angebote_en.html#kommunikation',
-      subInter: 'english/angebote_en.html#interkultur',
-      subCustom: 'english/angebote_en.html#individuell'
+      home: 'en/index_en.html',
+      about: 'en/ueber_mich_en.html',
+      services: 'en/angebote_en.html',
+      contact: 'en/index_en.html#kontakt',
+      events: 'en/event_en.html',
+      subDaf: 'en/angebote_en.html#daf',
+      subMed: 'en/angebote_en.html#medizin',
+      subCompany: 'en/angebote_en.html#unternehmen',
+      subComms: 'en/angebote_en.html#kommunikation',
+      subInter: 'en/angebote_en.html#interkultur',
+      subCustom: 'en/angebote_en.html#individuell'
     };
 
     const textDe = {
@@ -132,19 +132,19 @@
     const logoLink = document.getElementById('logoLink');
     if (logoLink) logoLink.href = rootPrefix + activeLinks.home;
     const logoImage = document.getElementById('logoImage');
-    if (logoImage) logoImage.src = rootPrefix + 'images/logos/logo_modern_v2.png';
+    if (logoImage) logoImage.src = rootPrefix + 'images/logos/logo_modern_v3.png';
 
     const dropdownBtn = document.getElementById('angeboteDropdownBtn');
     if (dropdownBtn) dropdownBtn.setAttribute('aria-label', activeText.dropdownAria);
 
     let deCounterpart = 'index.html';
-    let enCounterpart = 'english/index_en.html';
+    let enCounterpart = 'en/index_en.html';
     if (isEnglish) {
-      deCounterpart = 'deutsch/' + toDeFile(file);
-      enCounterpart = 'english/' + file;
+      deCounterpart = 'de/' + toDeFile(file);
+      enCounterpart = 'en/' + file;
     } else if (isGermanSub) {
-      deCounterpart = 'deutsch/' + file;
-      enCounterpart = 'english/' + toEnFile(file);
+      deCounterpart = 'de/' + file;
+      enCounterpart = 'en/' + toEnFile(file);
     }
 
     const langSwitch = document.getElementById('langSwitch');

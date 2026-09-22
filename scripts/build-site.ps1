@@ -81,8 +81,9 @@ function Clean-HtmlInDir {
 $clean = $args -contains '--clean'
 
 if ($clean) {
-  Clean-HtmlInDir (Join-Path $root 'deutsch')
-  Clean-HtmlInDir (Join-Path $root 'english')
+  Clean-HtmlInDir (Join-Path $root 'de')
+  Clean-HtmlInDir (Join-Path $root 'en')
+  exit
 }
 
 # Shared nav (template source)
@@ -96,12 +97,9 @@ $enLocalePath = Join-Path $root 'src/i18n/en.json'
 if (Test-Path $navTemplate) {
   $navBase = Get-Content -Raw -Encoding utf8 $navTemplate
 
-  # Backward-compatible shared nav with auto detection.
-  Set-Content -Encoding utf8 (Join-Path $root 'nav.html') ($navBase.Replace('{{forceLanguage}}', ''))
-
   # Static language variants generated from the same template.
-  Set-Content -Encoding utf8 (Join-Path $root 'nav.de.html') ($navBase.Replace('{{forceLanguage}}', 'de'))
-  Set-Content -Encoding utf8 (Join-Path $root 'nav.en.html') ($navBase.Replace('{{forceLanguage}}', 'en'))
+  Set-Content -Encoding utf8 (Join-Path $root 'src/de/pages/nav.html') ($navBase.Replace('{{forceLanguage}}', 'de'))
+  Set-Content -Encoding utf8 (Join-Path $root 'src/en/pages/nav_en.html') ($navBase.Replace('{{forceLanguage}}', 'en'))
 } else {
   Copy-Item -Force (Join-Path $root 'src/shared/nav.html') (Join-Path $root 'nav.html')
 }
@@ -111,8 +109,8 @@ if ((Test-Path $indexTemplate) -and (Test-Path $deLocalePath) -and (Test-Path $e
   $enLocale = Load-Locale $enLocalePath
 
   $deIndex = Render-Template -TemplatePath $indexTemplate -Tokens $deLocale
-  Ensure-Dir (Join-Path $root 'deutsch')
-  Set-Content -Encoding utf8 (Join-Path $root 'deutsch/index.html') $deIndex
+  Ensure-Dir (Join-Path $root 'de')
+  Set-Content -Encoding utf8 (Join-Path $root 'de/index.html') $deIndex
 
   $router = @"
 <!doctype html>
@@ -121,47 +119,47 @@ if ((Test-Path $indexTemplate) -and (Test-Path $deLocalePath) -and (Test-Path $e
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eleonora Rachor Academy</title>
-  <meta http-equiv="refresh" content="0;url=deutsch/index.html">
+  <meta http-equiv="refresh" content="0;url=de/index.html">
   <script>
     (function () {
       var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-      var target = lang.startsWith('en') ? 'english/index_en.html' : 'deutsch/index.html';
+      var target = lang.startsWith('en') ? 'en/index_en.html' : 'de/index.html';
       window.location.replace(target);
     })();
   </script>
 </head>
 <body>
   <noscript>
-    <p><a href="deutsch/index.html">Deutsch</a> | <a href="english/index_en.html">English</a></p>
+    <p><a href="de/index.html">Deutsch</a> | <a href="en/index_en.html">English</a></p>
   </noscript>
 </body>
 </html>
 "@
   Set-Content -Encoding utf8 (Join-Path $root 'index.html') $router
 
-  Ensure-Dir (Join-Path $root 'english')
+  Ensure-Dir (Join-Path $root 'en')
   $enIndex = Render-Template -TemplatePath $indexTemplate -Tokens $enLocale
-  Set-Content -Encoding utf8 (Join-Path $root 'english/index_en.html') $enIndex
+  Set-Content -Encoding utf8 (Join-Path $root 'en/index_en.html') $enIndex
 } else {
   # Fallback to old copy behavior if template/i18n files are missing
   Copy-Item -Force (Join-Path $root 'src/de/index.html') (Join-Path $root 'index.html')
 }
 
 # German
-Copy-HtmlDir -SourceDir (Join-Path $root 'src/de/pages') -TargetDir (Join-Path $root 'deutsch')
+Copy-HtmlDir -SourceDir (Join-Path $root 'src/de/pages') -TargetDir (Join-Path $root 'de')
 
 # English
-Copy-HtmlDir -SourceDir (Join-Path $root 'src/en/pages') -TargetDir (Join-Path $root 'english')
+Copy-HtmlDir -SourceDir (Join-Path $root 'src/en/pages') -TargetDir (Join-Path $root 'en')
 
 # Shared-template subpages (Phase 2)
 $subTemplate = Join-Path $root 'src/templates/subpage.template.html'
 if ((Test-Path $subTemplate) -and (Test-Path $deLocalePath) -and (Test-Path $enLocalePath)) {
   $deSubMap = @(
-    @{ slug = 'services'; title = $deLocale['titleServices']; out = 'deutsch/angebote.html' },
-    @{ slug = 'events'; title = $deLocale['titleEvents']; out = 'deutsch/event.html' },
-    @{ slug = 'company'; title = $deLocale['titleCompany']; out = 'deutsch/firmen.html' },
-    @{ slug = 'about'; title = $deLocale['titleAbout']; out = 'deutsch/ueber_mich.html' },
-    @{ slug = 'legal'; title = $deLocale['titleLegal']; out = 'deutsch/impressum_datenschutz.html' }
+    @{ slug = 'services'; title = $deLocale['titleServices']; out = 'de/angebote.html' },
+    @{ slug = 'events'; title = $deLocale['titleEvents']; out = 'de/event.html' },
+    @{ slug = 'company'; title = $deLocale['titleCompany']; out = 'de/firmen.html' },
+    @{ slug = 'about'; title = $deLocale['titleAbout']; out = 'de/ueber_mich.html' },
+    @{ slug = 'legal'; title = $deLocale['titleLegal']; out = 'de/impressum_datenschutz.html' }
   )
 
   foreach ($p in $deSubMap) {
@@ -172,11 +170,11 @@ if ((Test-Path $subTemplate) -and (Test-Path $deLocalePath) -and (Test-Path $enL
   }
 
   $enSubMap = @(
-    @{ slug = 'services'; title = $enLocale['titleServices']; out = 'english/angebote_en.html' },
-    @{ slug = 'events'; title = $enLocale['titleEvents']; out = 'english/event_en.html' },
-    @{ slug = 'company'; title = $enLocale['titleCompany']; out = 'english/firmen_en.html' },
-    @{ slug = 'about'; title = $enLocale['titleAbout']; out = 'english/ueber_mich_en.html' },
-    @{ slug = 'legal'; title = $enLocale['titleLegal']; out = 'english/impressum_datenschutz_en.html' }
+    @{ slug = 'services'; title = $enLocale['titleServices']; out = 'en/angebote_en.html' },
+    @{ slug = 'events'; title = $enLocale['titleEvents']; out = 'en/event_en.html' },
+    @{ slug = 'company'; title = $enLocale['titleCompany']; out = 'en/firmen_en.html' },
+    @{ slug = 'about'; title = $enLocale['titleAbout']; out = 'en/ueber_mich_en.html' },
+    @{ slug = 'legal'; title = $enLocale['titleLegal']; out = 'en/impressum_datenschutz_en.html' }
   )
 
   foreach ($p in $enSubMap) {

@@ -1,9 +1,9 @@
 ﻿<!doctype html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Events – Eleonora Rachor</title>
+  <title>Events - Eleonora Rachor</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
@@ -26,8 +26,8 @@
 
 
 <footer class="text-center py-10 text-sm text-gray-500">
-  <a href="impressum_datenschutz.html#Impressum">Impressum | </a>
-  <a href="impressum_datenschutz.html#Datenschutz">Datenschutz</a>
+  <a href="impressum_datenschutz_en.html#Impressum">Legal Notice | </a>
+  <a href="impressum_datenschutz_en.html#Datenschutz">Privacy Policy</a>
   <br/>
   <p>© 2026 Eleonora Rachor</p>
 </footer>
@@ -37,16 +37,16 @@
     <button id="closeLogin" class="absolute top-2 right-2">&times;</button>
     <h2 class="heading text-xl mb-4">Login</h2>
     <form id="loginForm" class="grid gap-4">
-      <input type="text" id="loginUser" placeholder="Benutzername" class="border p-2 rounded">
-      <input type="password" id="loginPass" placeholder="Passwort" class="border p-2 rounded">
-      <button class="bg-black text-white py-2 rounded">Einloggen</button>
+      <input type="text" id="loginUser" placeholder="Username" class="border p-2 rounded">
+      <input type="password" id="loginPass" placeholder="Password" class="border p-2 rounded">
+      <button class="bg-black text-white py-2 rounded">Log in</button>
       <div id="loginMsg" class="text-sm hidden"></div>
     </form>
   </div>
 </div>
 
 <script>
-fetch('../nav.de.html')
+fetch('../en/nav_en.html')
   .then(response => response.text())
   .then(html => {
     const navPlaceholder = document.getElementById('nav-placeholder');
@@ -72,7 +72,7 @@ fetch('../nav.de.html')
 
   })
   .catch(() => {
-    document.getElementById('nav-placeholder').innerHTML = 'Navigation Fehler';
+    document.getElementById('nav-placeholder').innerHTML = 'Navigation error';
   });
 
 const loginModal = document.getElementById('loginModal');
@@ -87,12 +87,12 @@ loginForm.onsubmit = e => {
   const user = document.getElementById('loginUser').value;
   const pass = document.getElementById('loginPass').value;
   if (user === 'admin' && pass === 'demo') {
-    loginMsg.textContent = 'Login erfolgreich!';
+    loginMsg.textContent = 'Login successful!';
     loginMsg.classList.remove('hidden');
     loginMsg.classList.add('text-green-600');
     setTimeout(() => loginModal.classList.add('hidden'), 1000);
   } else {
-    loginMsg.textContent = 'Falsche Daten';
+    loginMsg.textContent = 'Incorrect credentials';
     loginMsg.classList.remove('hidden');
     loginMsg.classList.add('text-red-500');
   }
