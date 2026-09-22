@@ -6,8 +6,8 @@ const root = process.cwd();
 const mappings = [
   { src: 'src/shared/nav.html', dest: 'nav.html' },
   { src: 'src/de/index.html', dest: 'index.html' },
-  { src: 'src/de/pages', dest: 'deutsch', dir: true },
-  { src: 'src/en/pages', dest: 'english', dir: true }
+  { src: 'src/de/pages', dest: 'de', dir: true },
+  { src: 'src/en/pages', dest: 'en', dir: true }
 ];
 
 async function ensureDir(dirPath) {
@@ -62,8 +62,8 @@ async function main() {
   const clean = process.argv.includes('--clean');
 
   if (clean) {
-    await cleanHtmlInDir('deutsch');
-    await cleanHtmlInDir('english');
+    await cleanHtmlInDir('de');
+    await cleanHtmlInDir('en');
   }
 
   for (const map of mappings) {
