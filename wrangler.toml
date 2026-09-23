@@ -1,4 +1,4 @@
-name = "mein-projekt"
+name = "eli-website"
 main = "src/index.js" # Das Skript ist zwingend erforderlich für Bindings!
 
 [assets]

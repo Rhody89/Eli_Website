@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "eliwebsite",
+  "name": "eli-website",
   "compatibility_date": "2026-04-30",
   "observability": {
     "enabled": true
@@ -10,5 +10,11 @@
   },
   "compatibility_flags": [
     "nodejs_compat"
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_id": "5df81f0a-686f-4e33-98fe-7695c7b50d8e"
+    }
   ]
 }
