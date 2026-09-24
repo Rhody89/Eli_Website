@@ -1,0 +1,212 @@
+﻿<nav class="flex justify-between items-center max-w-6xl mx-auto px-10 py-6 bg-white/70 backdrop-blur relative">
+  <a id="logoLink" href="index.html" class="bg-white">
+    <img id="logoImage" src="https://storage.eleonora-rachor.com/images/logos/logo_modern_v3.png" height="200" width="200" alt="Eleonora Rachor Academy">
+  </a>
+
+  <div id="navMenu" class="hidden absolute bg-white shadow-lg rounded-lg flex flex-col gap-4 p-6 z-50 min-w-[200px] md:flex md:static md:shadow-none md:bg-transparent md:p-0 md:flex-row md:items-center md:gap-8 md:min-w-0 md:ml-auto" style="top:0;right:0;">
+    <a id="homeLink" href="index.html" class="block text-xl">Startseite</a>
+    <a id="aboutLink" href="de/ueber_mich.html" class="block text-xl">Über mich</a>
+    <div class="relative group block">
+      <div class="flex items-center">
+        <a id="servicesLink" href="de/angebote.html" class="block text-xl focus:outline-none">Angebote</a>
+        <button id="angeboteDropdownBtn" aria-label="Dropdown öffnen" class="ml-1 focus:outline-none" style="background:transparent;border:none;padding:0;cursor:pointer;">
+          <svg class="inline w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+      </div>
+      <div id="angeboteDropdown" class="hidden group-hover:block absolute left-0 -mt-1 w-72 bg-white shadow-lg rounded-lg z-60 py-2 border border-gray-200 md:min-w-[260px]" style="margin-top:-2px;">
+        <a id="subDaf" href="de/angebote.html#daf" class="block px-6 py-2 hover:bg-gray-100 text-base">Deutsch als Fremd- und Zweitsprache (DaF/DaZ)</a>
+        <a id="subMed" href="de/angebote.html#medizin" class="block px-6 py-2 hover:bg-gray-100 text-base">Medizinisches Deutsch & Fachsprachprüfung (FSP)</a>
+        <a id="subCompany" href="de/angebote.html#unternehmen" class="block px-6 py-2 hover:bg-gray-100 text-base">Berufssprachkurse für Unternehmen</a>
+        <a id="subComms" href="de/angebote.html#kommunikation" class="block px-6 py-2 hover:bg-gray-100 text-base">Kommunikationstraining</a>
+        <a id="subInter" href="de/angebote.html#interkultur" class="block px-6 py-2 hover:bg-gray-100 text-base">Interkulturelle Bildung, Resilienz & Prävention</a>
+        <a id="subCustom" href="de/angebote.html#individuell" class="block px-6 py-2 hover:bg-gray-100 text-base">Individuelle Konzepte</a>
+      </div>
+    </div>
+    <a id="contactLink" href="index.html#kontakt" class="block text-xl">Kontakt</a>
+    <a id="eventsLink" href="de/event.html" class="block text-xl">Events</a>
+  </div>
+
+  <button id="menuToggle" class="flex flex-col w-10 h-10 p-2 rounded hover:bg-gray-200 md:hidden" type="button">
+    <span class="block w-6 h-0.5 bg-black mb-1"></span>
+    <span class="block w-6 h-0.5 bg-black mb-1"></span>
+    <span class="block w-6 h-0.5 bg-black"></span>
+  </button>
+
+  <button id="langSwitch" class="text-sm px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition ml-4">EN</button>
+  <button id="loginBtn" class="text-sm px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition ml-4">Login</button>
+
+  <script>
+  (function () {
+    const path = window.location.pathname.replace(/\\/g, '/');
+    const isEnglish = path.includes('/en/');
+    const isGermanSub = path.includes('/de/');
+    const file = path.split('/').pop() || 'index.html';
+
+    const rootPrefix = (isEnglish || isGermanSub ? '../' : '');
+
+    // Some hosts/browser routes may drop ".html"; normalize before switching language.
+    function toDeFile(name) {
+      const base = name.replace(/\.html$/i, '');
+      const deBase = base.endsWith('_en') ? base.slice(0, -3) : base;
+      return (deBase || 'index') + '.html';
+    }
+
+    function toEnFile(name) {
+      const base = name.replace(/\.html$/i, '');
+      const enBase = base.endsWith('_en') ? base : (base + '_en');
+      return (enBase || 'index_en') + '.html';
+    }
+
+    const deLinks = {
+      home: 'de/index.html',
+      about: 'de/ueber_mich.html',
+      services: 'de/angebote.html',
+      contact: 'de/index.html#kontakt',
+      events: 'de/event.html',
+      subDaf: 'de/angebote.html#daf',
+      subMed: 'de/angebote.html#medizin',
+      subCompany: 'de/angebote.html#unternehmen',
+      subComms: 'de/angebote.html#kommunikation',
+      subInter: 'de/angebote.html#interkultur',
+      subCustom: 'de/angebote.html#individuell'
+    };
+
+    const enLinks = {
+      home: 'en/index_en.html',
+      about: 'en/ueber_mich_en.html',
+      services: 'en/angebote_en.html',
+      contact: 'en/index_en.html#kontakt',
+      events: 'en/event_en.html',
+      subDaf: 'en/angebote_en.html#daf',
+      subMed: 'en/angebote_en.html#medizin',
+      subCompany: 'en/angebote_en.html#unternehmen',
+      subComms: 'en/angebote_en.html#kommunikation',
+      subInter: 'en/angebote_en.html#interkultur',
+      subCustom: 'en/angebote_en.html#individuell'
+    };
+
+    const textDe = {
+      home: 'Startseite', about: 'Über mich', services: 'Angebote', contact: 'Kontakt', events: 'Events',
+      subDaf: 'Deutsch als Fremd- und Zweitsprache (DaF/DaZ)',
+      subMed: 'Medizinisches Deutsch & Fachsprachprüfung (FSP)',
+      subCompany: 'Berufssprachkurse für Unternehmen',
+      subComms: 'Kommunikationstraining',
+      subInter: 'Interkulturelle Bildung, Resilienz & Prävention',
+      subCustom: 'Individuelle Konzepte',
+      switchText: 'EN', dropdownAria: 'Dropdown öffnen'
+    };
+
+    const textEn = {
+      home: 'Home', about: 'About Me', services: 'Services', contact: 'Contact', events: 'Events',
+      subDaf: 'German as a Foreign and Second Language (DaF/DaZ)',
+      subMed: 'Medical German & Professional Language Exam (FSP)',
+      subCompany: 'Business Language Courses for Companies',
+      subComms: 'Communication Training',
+      subInter: 'Intercultural Education, Resilience & Prevention',
+      subCustom: 'Individual Programs',
+      switchText: 'DE', dropdownAria: 'Open dropdown'
+    };
+
+    const activeLinks = isEnglish ? enLinks : deLinks;
+    const activeText = isEnglish ? textEn : textDe;
+
+    function setNav(id, href, label) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.href = rootPrefix + href;
+      if (label) el.textContent = label;
+    }
+
+    setNav('homeLink', activeLinks.home, activeText.home);
+    setNav('aboutLink', activeLinks.about, activeText.about);
+    setNav('servicesLink', activeLinks.services, activeText.services);
+    setNav('contactLink', activeLinks.contact, activeText.contact);
+    setNav('eventsLink', activeLinks.events, activeText.events);
+    setNav('subDaf', activeLinks.subDaf, activeText.subDaf);
+    setNav('subMed', activeLinks.subMed, activeText.subMed);
+    setNav('subCompany', activeLinks.subCompany, activeText.subCompany);
+    setNav('subComms', activeLinks.subComms, activeText.subComms);
+    setNav('subInter', activeLinks.subInter, activeText.subInter);
+    setNav('subCustom', activeLinks.subCustom, activeText.subCustom);
+
+    const logoLink = document.getElementById('logoLink');
+    if (logoLink) logoLink.href = rootPrefix + activeLinks.home;
+    const logoImage = document.getElementById('logoImage');
+    if (logoImage) logoImage.src = 'https://storage.eleonora-rachor.com/images/logos/logo_modern_v3.png';
+
+    const dropdownBtn = document.getElementById('angeboteDropdownBtn');
+    if (dropdownBtn) dropdownBtn.setAttribute('aria-label', activeText.dropdownAria);
+
+    let deCounterpart = 'index.html';
+    let enCounterpart = 'en/index_en.html';
+    if (isEnglish) {
+      deCounterpart = 'de/' + toDeFile(file);
+      enCounterpart = 'en/' + file;
+    } else if (isGermanSub) {
+      deCounterpart = 'de/' + file;
+      enCounterpart = 'en/' + toEnFile(file);
+    }
+
+    const langSwitch = document.getElementById('langSwitch');
+    if (langSwitch) {
+      langSwitch.textContent = activeText.switchText;
+      langSwitch.onclick = () => {
+        window.location.href = rootPrefix + (isEnglish ? deCounterpart : enCounterpart);
+      };
+    }
+
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    const angeboteDropdown = document.getElementById('angeboteDropdown');
+    let dropdownOpen = false;
+
+    if (menuToggle && navMenu) {
+      menuToggle.addEventListener('click', function () {
+        if (navMenu.classList.contains('hidden')) {
+          navMenu.classList.remove('hidden');
+          const btnRect = menuToggle.getBoundingClientRect();
+          const scrollY = window.scrollY || window.pageYOffset;
+          navMenu.style.top = (btnRect.bottom + scrollY + 8) + 'px';
+          navMenu.style.right = (window.innerWidth - btnRect.right) + 'px';
+        } else {
+          navMenu.classList.add('hidden');
+        }
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+          navMenu.classList.add('hidden');
+          if (angeboteDropdown) angeboteDropdown.classList.add('hidden');
+        }
+      });
+
+      window.addEventListener('resize', function () {
+        navMenu.classList.add('hidden');
+        if (angeboteDropdown) angeboteDropdown.classList.add('hidden');
+      });
+    }
+
+    if (dropdownBtn && angeboteDropdown) {
+      dropdownBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        angeboteDropdown.classList.toggle('hidden');
+        dropdownOpen = !dropdownOpen;
+      });
+
+      document.addEventListener('click', function (e) {
+        if (dropdownOpen && !dropdownBtn.contains(e.target) && !angeboteDropdown.contains(e.target)) {
+          angeboteDropdown.classList.add('hidden');
+          dropdownOpen = false;
+        }
+      });
+
+      window.addEventListener('resize', function () {
+        angeboteDropdown.classList.add('hidden');
+        dropdownOpen = false;
+      });
+    }
+  })();
+  </script>
+</nav>
+
