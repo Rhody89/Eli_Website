@@ -1,16 +1,26 @@
-export default {
-  async fetch(request, env, ctx) {
+import { WorkerEntrypoint } from "cloudflare:workers";
+
+export default class extends WorkerEntrypoint {
+  // WICHTIG: Das Wort "async" MUSS hier vor "fetch" gelöscht werden!
+  fetch(request) {
+    // Da fetch nicht mehr async ist, lagern wir die asynchrone Logik
+    // in eine separate Hilfsfunktion aus, damit "this" perfekt funktioniert.
+    return this.handleRequest(request);
+  }
+
+  async handleRequest(request) {
     const url = new URL(request.url);
 
-    // Beispiel: Ein API-Endpunkt, der Daten aus D1 liest
+    // 1. API-Endpunkt abfangen
     if (url.pathname === "/api/users") {
-      const { results } = await env.DB.prepare(
+      // "this.env" ist jetzt garantiert voll einsatzbereit!
+      const { results } = await this.env.DB.prepare(
         "SELECT * FROM users LIMIT 10"
       ).all();
       return Response.json(results);
     }
 
-    // Für alle anderen Anfragen: Lade die statischen Assets (z.B. index.html)
-    return await env.ASSETS.fetch(request);
-  },
-};
+    // 2. Für alle anderen URLs: Statische Assets laden
+    return await this.env.ASSETS.fetch(request);
+  }
+}

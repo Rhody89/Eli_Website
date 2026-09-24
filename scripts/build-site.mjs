@@ -4,10 +4,10 @@ import path from 'node:path';
 const root = process.cwd();
 
 const mappings = [
-  { src: 'src/shared/nav.html', dest: 'nav.html' },
-  { src: 'src/de/index.html', dest: 'index.html' },
-  { src: 'src/de/pages', dest: 'de', dir: true },
-  { src: 'src/en/pages', dest: 'en', dir: true }
+  { src: 'src/gen/de', dest: 'public/de', dir: true },
+  { src: 'src/gen/en', dest: 'public/en', dir: true },
+  { src: 'src/index.js', dest: 'public/index.js', dir: false },
+  { src: 'src/index.html', dest: 'public/index.html', dir: false }
 ];
 
 async function ensureDir(dirPath) {
