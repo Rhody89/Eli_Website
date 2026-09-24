@@ -40,7 +40,7 @@
   "loginButton": "Einloggen",
   "loginSuccess": "Login erfolgreich!",
   "loginFailure": "Falsche Daten",
-  "assetPrefix": "../",
+  "assetPrefix": "https://storage.eleonora-rachor.com/",
   "navFetch": "../de/nav.html",
   "navFetchSub": "../de/nav.html",
   "navError": "Navigation Fehler",

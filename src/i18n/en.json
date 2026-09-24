@@ -40,7 +40,7 @@
   "loginButton": "Log in",
   "loginSuccess": "Login successful!",
   "loginFailure": "Incorrect credentials",
-  "assetPrefix": "../",
+  "assetPrefix": "https://storage.eleonora-rachor.com/",
   "navFetch": "../en/nav_en.html",
   "navFetchSub": "../en/nav_en.html",
   "navError": "Navigation error",
