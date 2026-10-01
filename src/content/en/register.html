@@ -1,0 +1,25 @@
+<section class="max-w-3xl mx-auto px-6 py-16">
+  <h1 class="heading text-3xl mb-4">Registration request</h1>
+  <p class="mb-8 text-gray-700">Your details will be sent to <code>/api/register</code>. A successful registration requires the backend endpoint to be available.</p>
+
+  <form id="registerForm" action="/api/register" method="post" class="grid gap-5">
+    <label class="grid gap-2">First name
+      <input type="text" name="firstName" autocomplete="given-name" required class="border border-gray-300 p-3 rounded-md">
+    </label>
+    <label class="grid gap-2">Last name
+      <input type="text" name="lastName" autocomplete="family-name" required class="border border-gray-300 p-3 rounded-md">
+    </label>
+    <label class="grid gap-2">Address
+      <input type="text" name="address" autocomplete="street-address" required class="border border-gray-300 p-3 rounded-md">
+    </label>
+    <label class="grid gap-2">Email address
+      <input type="email" name="email" autocomplete="email" required class="border border-gray-300 p-3 rounded-md">
+    </label>
+    <label class="grid gap-2">Password
+      <input type="password" name="password" autocomplete="new-password" required class="border border-gray-300 p-3 rounded-md">
+    </label>
+    <p id="registerStatus" role="status" aria-live="polite" class="text-sm text-gray-700"></p>
+    <button type="submit" class="justify-self-start bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800">Register</button>
+  </form>
+  <script src="../register.js"></script>
+</section>

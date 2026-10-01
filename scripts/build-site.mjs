@@ -7,6 +7,9 @@ const mappings = [
   { src: 'src/gen/de', dest: 'public/de', dir: true },
   { src: 'src/gen/en', dest: 'public/en', dir: true },
   { src: 'src/index.js', dest: 'public/index.js', dir: false },
+  { src: 'src/login.js', dest: 'public/login.js', dir: false },
+  { src: 'src/register.js', dest: 'public/register.js', dir: false },
+  { src: 'src/schema.js', dest: 'public/schema.js', dir: false },
   { src: 'src/index.html', dest: 'public/index.html', dir: false }
 ];
 

@@ -153,7 +153,8 @@ if ((Test-Path $subTemplate) -and (Test-Path $deLocalePath) -and (Test-Path $enL
     @{ slug = 'events'; title = $deLocale['titleEvents']; out = 'src/gen/de/event.html' },
     @{ slug = 'company'; title = $deLocale['titleCompany']; out = 'src/gen/de/firmen.html' },
     @{ slug = 'about'; title = $deLocale['titleAbout']; out = 'src/gen/de/ueber_mich.html' },
-    @{ slug = 'legal'; title = $deLocale['titleLegal']; out = 'src/gen/de/impressum_datenschutz.html' }
+    @{ slug = 'legal'; title = $deLocale['titleLegal']; out = 'src/gen/de/impressum_datenschutz.html' },
+    @{ slug = 'register'; title = 'Registrierung anfragen - Eleonora Rachor'; out = 'src/gen/de/registrieren.html' }
   )
 
   foreach ($p in $deSubMap) {
@@ -168,7 +169,8 @@ if ((Test-Path $subTemplate) -and (Test-Path $deLocalePath) -and (Test-Path $enL
     @{ slug = 'events'; title = $enLocale['titleEvents']; out = 'src/gen/en/event_en.html' },
     @{ slug = 'company'; title = $enLocale['titleCompany']; out = 'src/gen/en/firmen_en.html' },
     @{ slug = 'about'; title = $enLocale['titleAbout']; out = 'src/gen/en/ueber_mich_en.html' },
-    @{ slug = 'legal'; title = $enLocale['titleLegal']; out = 'src/gen/en/impressum_datenschutz_en.html' }
+    @{ slug = 'legal'; title = $enLocale['titleLegal']; out = 'src/gen/en/impressum_datenschutz_en.html' },
+    @{ slug = 'register'; title = 'Registration request - Eleonora Rachor'; out = 'src/gen/en/register_en.html' }
   )
 
   foreach ($p in $enSubMap) {

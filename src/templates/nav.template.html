@@ -33,7 +33,15 @@
   </button>
 
   <button id="langSwitch" class="text-sm px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition ml-4">EN</button>
-  <button id="loginBtn" class="text-sm px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition ml-4">Login</button>
+  <div id="accountMenu" class="relative ml-4">
+    <button id="accountMenuToggle" type="button" aria-label="Profilmenü öffnen" aria-expanded="false" aria-controls="accountDropdown" class="flex h-10 w-10 items-center justify-center rounded-full border border-black hover:bg-black hover:text-white transition">
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path stroke-linecap="round" d="M5 21a7 7 0 0 1 14 0"/></svg>
+    </button>
+    <div id="accountDropdown" class="hidden absolute right-0 top-full mt-2 w-44 rounded-md border border-gray-200 bg-white py-2 shadow-lg z-50">
+      <button id="loginBtn" type="button" class="block w-full px-4 py-2 text-left hover:bg-gray-100">Anmelden</button>
+      <a id="registerLink" href="de/index.html#kontakt" class="block px-4 py-2 hover:bg-gray-100">Registrieren</a>
+    </div>
+  </div>
 
   <script>
   (function () {
@@ -62,6 +70,7 @@
       about: 'de/ueber_mich.html',
       services: 'de/angebote.html',
       contact: 'de/index.html#kontakt',
+      register: 'de/registrieren.html',
       events: 'de/event.html',
       subDaf: 'de/angebote.html#daf',
       subMed: 'de/angebote.html#medizin',
@@ -76,6 +85,7 @@
       about: 'en/ueber_mich_en.html',
       services: 'en/angebote_en.html',
       contact: 'en/index_en.html#kontakt',
+      register: 'en/register_en.html',
       events: 'en/event_en.html',
       subDaf: 'en/angebote_en.html#daf',
       subMed: 'en/angebote_en.html#medizin',
@@ -93,7 +103,7 @@
       subComms: 'Kommunikationstraining',
       subInter: 'Interkulturelle Bildung, Resilienz & Prävention',
       subCustom: 'Individuelle Konzepte',
-      switchText: 'EN', dropdownAria: 'Dropdown öffnen'
+      switchText: 'EN', dropdownAria: 'Dropdown öffnen', accountMenuAria: 'Profilmenü öffnen', signIn: 'Anmelden', register: 'Registrieren'
     };
 
     const textEn = {
@@ -104,7 +114,7 @@
       subComms: 'Communication Training',
       subInter: 'Intercultural Education, Resilience & Prevention',
       subCustom: 'Individual Programs',
-      switchText: 'DE', dropdownAria: 'Open dropdown'
+      switchText: 'DE', dropdownAria: 'Open dropdown', accountMenuAria: 'Open account menu', signIn: 'Sign in', register: 'Register'
     };
 
     const activeLinks = isEnglish ? enLinks : deLinks;
@@ -136,6 +146,46 @@
 
     const dropdownBtn = document.getElementById('angeboteDropdownBtn');
     if (dropdownBtn) dropdownBtn.setAttribute('aria-label', activeText.dropdownAria);
+
+    const accountMenuToggle = document.getElementById('accountMenuToggle');
+    const accountMenu = document.getElementById('accountMenu');
+    const accountDropdown = document.getElementById('accountDropdown');
+    const loginBtn = document.getElementById('loginBtn');
+    const registerLink = document.getElementById('registerLink');
+    if (accountMenuToggle) accountMenuToggle.setAttribute('aria-label', activeText.accountMenuAria);
+    if (loginBtn) loginBtn.textContent = activeText.signIn;
+    if (registerLink) {
+      registerLink.textContent = activeText.register;
+      registerLink.href = rootPrefix + activeLinks.register;
+    }
+
+    function closeAccountMenu() {
+      if (!accountDropdown || !accountMenuToggle) return;
+      accountDropdown.classList.add('hidden');
+      accountMenuToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    if (accountMenuToggle && accountMenu && accountDropdown) {
+      accountMenuToggle.addEventListener('click', function () {
+        const isOpen = !accountDropdown.classList.contains('hidden');
+        accountDropdown.classList.toggle('hidden');
+        accountMenuToggle.setAttribute('aria-expanded', String(!isOpen));
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!accountMenu.contains(e.target)) closeAccountMenu();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAccountMenu();
+          accountMenuToggle.focus();
+        }
+      });
+
+      if (loginBtn) loginBtn.addEventListener('click', closeAccountMenu);
+      if (registerLink) registerLink.addEventListener('click', closeAccountMenu);
+    }
 
     let deCounterpart = 'index.html';
     let enCounterpart = 'en/index_en.html';

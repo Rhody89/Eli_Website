@@ -17,16 +17,13 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_id": "5df81f0a-686f-4e33-98fe-7695c7b50d8e"
+      "database_name": "eli-website-db",
+      "database_id": "5df81f0a-686f-4e33-98fe-7695c7b50d8e",
+      // "remote": true, // Aktiviert den Live-Zugriff bei wrangler dev
+      // KORREKTUR: Zeige Wrangler, wo Drizzle seine SQL-Dateien ablegt
+      "migrations_dir": "./", 
+      "migrations_pattern": "./*.sql" 
     }
-  ],
-  "previews": {
-    "d1_databases": [
-      {
-        "binding": "DB",
-        "database_id": "5df81f0a-686f-4e33-98fe-7695c7b50d8e"
-      }
-    ]
-  }
+  ]
 }
 
