@@ -2,7 +2,7 @@ import { sqliteTable, integer, text } from 'drizzle-orm/sqlite-core';
 
 // Hier definieren wir deine "users"-Tabelle für die D1-Datenbank
 export const users = sqliteTable('users', {
-  PersonID: integer('PersonID').primaryKey(),
+  PersonID: integer('PersonID').primaryKey({autoIncrement: true}),
   LastName: text('LastName').notNull().unique(),
   FirstName: text('FirstName'),
   Address: text('Address'),
